@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Moon+Dance&display=swap');
+
+@import "tailwindcss";
+ 
+@theme {
+  --font-moonDance: "Moon Dance", cursive;
+  --color-accent-50: #ffe5e5;
+  --color-accent-100: #ffb3b3;
+  --color-accent-300: #ff6666;
+  --color-accent-500: #ff1a1a;
+  --color-accent-700: #cc0000;
+  --color-accent-900: #800000;
+  --color-nile:#794044;
+  --text-10xl:132px; 
+  --spacing-ns:100px;
+}
+

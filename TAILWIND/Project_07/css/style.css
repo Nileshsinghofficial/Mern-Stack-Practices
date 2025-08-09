@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+
+@theme{
+    --color-nilla: #00baf2;
+    --color-darknilla: #002970;
+    --color-lightColor:#f5f5f5;
+    --color-lightnila:#00afe3;
+    --text-ns:14px;
+}

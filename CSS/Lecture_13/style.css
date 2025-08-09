@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    overflow-y: scroll;
+    margin: auto;
+    border: 5px solid red;
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+
+    /* main axis */
+    justify-content: space-around;
+
+    /* cross axis */
+    align-items: center;
+    gap: 8px;
+    align-content: space-between;
+    
+}
+
+.box{
+    background-color: violet;
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+}

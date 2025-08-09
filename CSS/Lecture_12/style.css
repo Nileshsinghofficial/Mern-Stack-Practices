@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.parent{
+    background-color: #f4b2e8;
+    border:2px solid  #52f565b3;
+    width: 70vw;
+    height: 50vh;
+}
+
+.child {
+    background-color: aquamarine;
+    display: inline-block;
+    /* margin: 25%; */
+    width: 50vw;
+    height: 80vh;
+}

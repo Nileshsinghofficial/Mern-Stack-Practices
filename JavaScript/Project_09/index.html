@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"/>
+</head>
+<body>
+
+    <div class="main">
+        <div class="firstDiv">
+            <h1 id="newPass"></h1>
+            <i class="fa-regular fa-copy" id="copyBtn"></i>
+        
+        </div>
+        <div class="secondDiv">
+            <input type="range" id="range"  min="6" max="15" value="9 ">
+            <p id="rangeVal"></p>
+        </div>
+        
+        
+    
+
+        <div class="thirdDiv">
+            <input type="checkbox" name="capLet" id="capLet">
+            <label for="capLet">Upper Case</label>
+            <br>
+            <input type="checkbox" name="samLet" id="samLet">
+            <label for="samLet">Lower Case</label>
+            <br>
+            <input type="checkbox" name="number" id="number">
+            <label for="number">Number</label>
+            <br>
+            <input type="checkbox" name="symbol" id="symbol">
+            <label for="symbol">Symbol</label>
+            <br>
+        </div>
+
+        <button id="genPass">Generate Password</button>
+        <br>
+        <!-- <button id="savePdf">Save as PDF</button> -->
+
+    </div>
+
+
+    
+    <script src="index.js"></script>
+</body>
+</html>

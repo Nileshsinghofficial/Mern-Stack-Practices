@@ -1,0 +1,22 @@
+{
+  "name": "lecture_22",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "postcss css/style.css -o dist/style.css --watch",
+    "build": "postcss css/style.css -o dist/style.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.11",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.11",
+    "vite": "^6.3.5"
+  },
+  "devDependencies": {
+    "postcss-cli": "^11.0.1"
+  }
+}

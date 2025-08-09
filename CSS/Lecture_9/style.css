@@ -1,0 +1,36 @@
+h1 {
+    color: red;
+}
+
+.container {
+    border: 1px dotted black;
+    width: 700px;
+    height: 900px;
+    /* background-image: url(https://images.pexels.com/photos/906150/pexels-photo-906150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2); size: 200px;
+    background-repeat: no-repeat;
+    background-size: cover; */
+    /* background-color: rgba(244, 244, 15, 0.42); */
+} 
+
+p{
+    /* Color type */
+    /* 1. normal red, blue
+       2. hex #ff0000 range 00-ff
+       3. rgb or rgba 0-255
+       4. hsl or hsla-> hue(0-360), saturation(100%), lightness(100 % )
+    */
+    color: hsla(0, 85%, 54%, 0.6);
+}
+
+/* linear gradient */
+/* radial gradient */
+/* conic gradient */
+
+body {
+    /* background: linear-gradient( rgba(235, 68, 68, 0.789),rgba(212, 212, 77, 0.816));*/   /* use to right/left and 12deg in starting */
+    /* background: radial-gradient(red,green);  */
+    /* background: conic-gradient(red,blue); */
+
+    /* background-repeat: no-repeat; */
+    background-attachment: scroll;
+}

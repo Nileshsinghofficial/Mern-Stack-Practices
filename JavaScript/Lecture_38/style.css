@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* #mainDiv {
+    background-color: palegreen;
+}
+
+.childdiv {
+    margin: 30px;
+    width: 150px;
+    height: 150px;
+    background-color: #da9b9b;
+
+} */
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box1, .box2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+    background-color: grey;
+    width: 400px;
+    height: 300px;
+}
+
+.item {
+    display: flexbox;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    width: 100px;
+    height: 100px;
+    background-color: peru;
+}

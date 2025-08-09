@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.box{
+    width: 200px;
+    height: 200px;
+    background-color: violet;
+    border: 10px solid black;
+
+    transform: perspective(620px) translatez(-190px);
+}
+
+.box:hover{
+    width: 400px;
+    height: 400px;
+
+    
+    /* transform: scale(0.2);
+    transition: transform 13s ease-in; */
+    /* transition: all 11s ease-in 5s; */
+
+    /* transition: property duration timing-function delay; */
+
+    
+
+    /* transform: scale(1.2); */
+    /* transition: transform 6s ; */
+}
+
+
+
+/* Transition */
+
+/* 1). transition-delay  */
+/* 2). transition-duration */
+/* 3). transition-property: all; */
+/* 4). transition-timing-function:ease-in;*/
+

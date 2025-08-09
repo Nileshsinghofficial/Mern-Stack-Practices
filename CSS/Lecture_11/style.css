@@ -1,0 +1,30 @@
+*{
+    margin: 5px;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container{
+    position: relative;
+    box-sizing: border-box;
+    height: 900px;
+    border: 4px solid saddlebrown;
+    /* height: 500px; */
+    
+}
+
+.box{
+    border: 1px solid black;
+    background-color: yellow;
+    cursor: pointer;
+   
+}
+
+#box3{
+    background-color: greenyellow;
+    /* top: 0; */
+    /* position: sticky; */
+    /* display: inline-block; */
+
+}
+
+ 

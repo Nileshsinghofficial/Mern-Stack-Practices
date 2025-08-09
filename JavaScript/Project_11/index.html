@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 11 || Github Profile Viewer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <div class="main">
+        <div class="firstDiv">
+            <h1>Github Profile Viewer</h1>
+            <div class="search">
+                <input type="text" id="userId" placeholder="github username">
+                <button id="btn">Search</button>
+            </div>
+            <div id="notFoundMessage" style="color: white;background-color: #0083b0;; text-align: center; display: none; font-weight: bold;"></div>
+ 
+        </div>
+        <div class="secondDiv" id="userProfile">
+            <div class="userInfo">
+                <img src="" alt="" class="userImg" id="userImg">
+                <div class="userDetail">
+                    <p class="userName" id="userName"></p>
+                    <p class="userBio" id="userBio">Full Stack Engineer</p>
+                </div>
+            </div>
+            <div class="userFollow">
+                <div class="Follow">
+                    <div class="repo">
+                        <p>Follower</p>
+                        <p id="repo1">12</p>
+                    </div>
+                    <div class="repo">
+                        <p>Following</p>
+                        <p id="repo2">10</p>
+                    </div>
+                    <div class="repo">
+                        <p>repo</p>
+                        <p id="repo3">4</p>
+                    </div>
+                </div>
+                <div class="vistProfile">
+                    <a id="vistProfile" href="" target="_blank">View Profile</a>
+                </div>
+            </div>
+        </div>
+   </div> 
+
+
+    <script src="index.js"></script>
+</body>
+</html>

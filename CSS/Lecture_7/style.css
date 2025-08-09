@@ -1,0 +1,42 @@
+h3 {
+    border: 1px solid rgb(153, 135, 133); background-color: rgb(173, 206, 40); font-size: 45px; font-weight: 400; color: blueviolet;
+}
+
+
+/* .wrapper {
+    background-color: cadetblue;
+} */
+
+#hello {
+    background-color: rgba(191, 178, 252, 0.578);
+}
+
+.container {
+    background-color: rgb(201, 191, 191);
+}
+
+/* ul li:nth-child(4){
+    background-color: darkgoldenrod;
+} */
+
+/* this use en last to range */
+/* 
+ul li:nth-last-child(2){
+    background-color: seagreen;
+} */
+
+/* use nth-of-type to specific range just like 2n (n= 1,2,3,4.....n-1) every second one is comes under this property */
+/* ul li:nth-of-type(3n){
+    background-color: purple;
+} */
+
+/* ul li:nth-last-of-type(3n){
+   
+    background-color: yellowgreen;
+
+} */
+
+ul li:hover{
+    background-color: rgb(231, 248, 38);
+    color: #0db3d4e5;
+}

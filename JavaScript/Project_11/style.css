@@ -1,0 +1,219 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} 
+
+body {
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.main{
+    background: linear-gradient(135deg, #f6d365, #fda085);
+    color: white;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+     
+
+}
+
+.firstDiv{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 30%;
+  width: 60%;
+  font: 1em sans-serif;
+  background: linear-gradient(135deg, #00b4db, #0083b0);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgb(68, 3, 3,0.2);
+  margin-bottom: 20px;
+}
+
+.search{
+  display: flex;
+  padding: 20px;
+  font-size: 20px;
+
+}
+.search > input[type=text]{
+  font-size: 20px;
+  border: #0083b0;
+  border-radius: 5px;
+  height: 30px;
+  padding-left: 20px;
+  
+}
+
+input[type=text]:focus {
+  outline: none;             /*  Default outline hatane ke liye */
+  border: 2px solid #0083b0;    /* Custom border set karne ke liye */
+  box-shadow: 0 0 5px #0083b0;   /* Optional glow effect */
+}
+
+#btn {
+  padding: 5px 20px;
+  font-size: 15px;
+  border-radius: 5px;
+  color: rgb(68, 3, 3);
+  font-weight: bold;
+  background-color: #f6d465f7;
+  border: none;
+}
+
+#btn:hover {
+    background-color: #e6c155;
+    transform: translateY(-2px);
+}
+
+#notFoundMessage {
+     
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Optional animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+
+.secondDiv{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #00b4db, #0083b0);
+    color: white;
+    width: 60%;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2)
+}
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+   
+    
+}
+
+.userImg{
+
+    border-radius: 50%;
+    border: 2px solid #00b4db;
+    width: 50%;
+    /* transform: scale(1.2); */
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+     
+    
+} 
+.userImg:hover {
+  transform: scale(1.1);
+}
+
+
+
+.userDetail{
+    font-size: 18px;
+    text-align: center;
+}
+
+.userName {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.userBio{
+    font-size: 1.1em
+}
+
+.userFollow{
+    width: 60%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.Follow{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.repo {
+    font-size: 1.3em;
+    text-align: center;
+} 
+
+.vistProfile{
+    background-color: #f6d465f7;
+    color: rgb(68, 3, 3);
+    width: 60%;
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+.vistProfile:hover {
+    background-color: #e6c155;
+    transform: translateY(-2px);
+}
+.vistProfile a {
+  text-decoration: none;
+  
+}
+
+
+
+
+    /* ✅ Mobile responsiveness */
+@media (max-width: 926px) {
+    .firstDiv{
+        width: 95%;
+        padding: 15px;
+    }
+      .secondDiv {
+        width: 95%;
+        padding: 15px;
+      }
+
+      .userImg {
+        width: 100px;
+      }
+
+      .userName {
+        font-size: 1.1em;
+      }
+
+      .repo {
+        font-size: 1.2em;
+      }
+
+      .vistProfile {
+        font-size: 1.2em;
+        padding: 10px;
+      }
+} 

@@ -1,0 +1,33 @@
+h1 {
+    background-color: yellow;
+
+}
+.name {
+    text-align: center;
+    display: inline;
+    margin-left: 40%;
+
+}
+.name:hover{
+    color: rgb(249, 255, 255);
+    background-color: rgb(3, 3, 3);
+    text-transform: uppercase;
+}
+
+.dummyText {
+    background-color: rgb(188, 223, 223);
+    color: red;
+    font-size: larger;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 300;
+    /* font-style: normal; */
+
+    text-align: justify;
+
+    text-decoration: underline  1px solid rgb(121, 212, 47) ;
+
+    text-transform: lowercase;
+
+    text-shadow: 1px 1px 3px black;
+
+}

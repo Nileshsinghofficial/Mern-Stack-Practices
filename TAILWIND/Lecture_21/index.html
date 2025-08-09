@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tailwindcss</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+     <link rel="stylesheet" href="dist/style.css">
+
+</head>
+<body>
+    <!-- Step to download postcss v4 tailwind-->
+     <!--  1) npm init -y       "for package.json file generate"
+           2) npm install      "node package manager generate node file "
+           3)  npm install tailwindcss @tailwindcss/postcss postcss; npm install -D postcss-cli
+                "both install karna hai , dev dependencies (postcss-cli) baki dependecies"
+           4) create file name of postcss.config.mjs and add ' export default {
+                plugins: {
+                    "@tailwindcss/postcss": {},
+                     }
+                } '
+            5) creale folder and inside style.css like structre css/style.css   and paste on  @import "tailwindcss";
+            6)in index.html link file you should write link <link rel="stylesheet" href="dist/style.css"> same to same write after next step we generate this folder and file automatic.
+            7). in folder in terminal for run command  "npm i vite" for create a server
+            8). open package.json and go to script section you should write same to same code 
+              "scripts": {
+                    "dev": "vite",
+                    "build": "postcss css/style.css -o dist/style.css"
+
+            9). here first time two command run
+                i) npm run build   run fast command you see a file like dist/style.css this file for output.
+                ii) npm run dev this command for run server and you find your outpur here u use vite provide link and also use live server link both provide output but recommend vite link
+
+                thanks you i hope use full for use u follow talwind v4 postcss command and modify accoding this 
+
+     -->
+
+
+    <div class="wrapper flex items-center justify-center bg-amber-200 w-screen h-screen " >
+        <div class="overflow-hidden p-2 w-96 min-h-[30rem] flex flex-col justify-between items-start bg-white rounded-2xl space-y-4">
+            <img class="rounded-2xl hover:scale-110 duration-500" src="https://static.toiimg.com/img/100273065/Master.jpg" alt="">
+            <p class="text-xl text-justify">Varanasi is a city in Uttar Pradesh with a surface area of 82 km². It's known as the "City of Light", and is also called Kashi. Varanasi is known for its production of silk, Banarasi saris, and brocades</p>
+            <button class="bg-red-300 p-3 rounded-lg hover:bg-green-400 duration-500">read more</button>
+            
+        </div>
+    </div>
+</body>
+</html> 
