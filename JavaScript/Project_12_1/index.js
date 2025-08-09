@@ -43,7 +43,7 @@ function displayImg(res){
     let div = document.createElement('div');
     div.setAttribute('class','singleImg');
         div.innerHTML = 
-        `     <div class="firstDiv">
+          `   <div class="firstDiv">
                 <img src=${data.user.profile_image.large} alt="" class="userImg">
                 <p class="userName">${data.user.name}</p>
               </div>
@@ -55,7 +55,8 @@ function displayImg(res){
     
 
     document.getElementById('allImg').appendChild(div);
-    document.getElementById('loadMoreBtn').style.display = 'block'
+    document.getElementById('loadMoreBtn').style.display = 'inline-flex';
+    document.getElementById('resetBtn').style.display = 'inline-flex';
     
   });
 }
@@ -66,6 +67,23 @@ document.getElementById('loadMoreBtn').addEventListener('click', () => {
  
 
 })
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  let clear = document.getElementById('allImg');
+
+  clear.innerHTML = ''
+
+  keyword.value = ''
+
+  count = 1;
+
+  val = '';
+  document.getElementById('loadMoreBtn').style.display = 'none';
+  document.getElementById('resetBtn').style.display = 'none';
+
+})
+
+
 
 
 

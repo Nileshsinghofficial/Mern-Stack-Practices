@@ -119,6 +119,7 @@ input[type="text"]:focus{
 
 .loadMoreBtn{
     display: none;
+    width: auto;
     margin-top: 30px;
     font-size: 1.2em;
     font-weight: bold;
@@ -131,6 +132,8 @@ input[type="text"]:focus{
     outline: 1px solid green;
     cursor: pointer;
     transition: transform 0.3s;
+    margin-right: 15px;
+    text-align: center;
 }
 
 
@@ -138,8 +141,32 @@ input[type="text"]:focus{
 .loadMoreBtn:hover{
     transform: translateY(-3px);
     box-shadow: 0 0 10px rgba(0, 128, 0, 0.43);
-    
-    
+  
+}
+
+.resetBtn {
+    display:none;
+    width: auto;
+    margin-top: 30px;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding-block: 10px;
+    padding-inline: 30px;
+    background-color: lightgreen;
+    border-radius: 20px;
+    text-align: center;
+    border: none;
+    outline: 1px solid green;
+    cursor: pointer;
+    transition: transform 0.3s;
+    margin-right: 15px;
+    text-align: center;
+}
+
+.resetBtn:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 0 10px rgba(0, 128, 0, 0.43);
+  
 }
 
 /* Mobile-Friendly Adjustments */
