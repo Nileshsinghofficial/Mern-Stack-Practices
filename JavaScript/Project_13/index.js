@@ -97,19 +97,23 @@ document.getElementById('searchBtn').addEventListener('click',() => {
     
 })
 
-function displayWeather({name = '-', main = {}, wind = {}}){
+function displayWeather({name = '-', main = {}, wind = {}, weather = {}}){
     let temp = main.temp ?? '-' ;
     let speed = wind.speed ?? '-' ;
     let pressure = main.pressure ?? '-';
     let humidity = main.humidity ?? '-';
+    let icon = weather[0].icon ?? '';
+    let description = weather[0].description ?? '-';
     div = `
         <div id="weatherInfo">
             <p id="temp">${temp}°C</p>
+            <p>${description}</p>
+            <img src='https://openweathermap.org/img/w/${icon}.png'>
             <P id="city">${name}</P>
             <div class="otherInfo">
                 <div class="wind">
                     <p>Wind</p>
-                    <p>${speed}/h</p>
+                    <p>${speed}m/s</p>
                 </div>
                 <div class="wind">
                     <p>Pressure<p>
