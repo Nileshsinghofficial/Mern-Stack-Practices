@@ -65,6 +65,8 @@
 // }
 
 
+
+
 // let result = isData('');
 
 // result.then(function success(result){
@@ -75,30 +77,30 @@
 
 
 
-function isData(item) {
-    let Promise1 = new Promise(function fun1(resolve, reject){
-            if(item){
-                resolve("Promise resolve");
-            } else {
-                reject('data is empty');
-            }
-    });
-    return Promise1;
-}
+// function isData(item) {
+//     let Promise1 = new Promise(function fun1(resolve, reject){
+//             if(item){
+//                 resolve("Promise resolve");
+//             } else {
+//                 reject('data is empty');
+//             }
+//     });
+//     return Promise1;
+// }
 
 
-let result = isData('d');
+// let result = isData('d');
 
-let x = result.then(function success(result){
-    console.log(result)
-    return 'Hello from .then()'
-});
-let y = x.then(function fun2(e){
-    console.log(e);
-    return 'Nilesh'
-});
-y.then(function third(three){
-    console.log(three);
-})
-console.log("x", x);
+// let x = result.then(function success(result){
+//     console.log(result)
+//     return 'Hello from .then()'
+// });
+// let y = x.then(function fun2(e){
+//     console.log(e);
+//     return 'Nilesh'
+// });
+// y.then(function third(three){
+//     console.log(three);
+// })
+// console.log("x", x);
  
