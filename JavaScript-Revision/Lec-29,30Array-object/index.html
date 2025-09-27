@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ultimate JavaScript Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        pre {
+            font-family: 'Fira Code', monospace;
+        }
+        .code-keyword { color: #8b5cf6; } /* violet-500 */
+        .code-function { color: #3b82f6; } /* blue-500 */
+        .code-string { color: #22c55e; } /* green-500 */
+        .code-comment { color: #9ca3af; } /* gray-400 */
+        .code-number { color: #ef4444; } /* red-500 */
+        .code-output {
+            background-color: #f1f5f9; /* slate-100 */
+            border-left: 4px solid #6366f1; /* indigo-500 */
+            padding: 0.75rem;
+            margin-top: 0.5rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            color: #334155; /* slate-700 */
+            font-size: 0.9em;
+        }
+        .active-nav {
+             background-color: #e0e7ff; /* indigo-100 */
+             color: #4338ca; /* indigo-700 */
+             font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+    <div class="flex">
+        <aside class="w-72 h-screen sticky top-0 bg-white border-r border-slate-200 p-6 hidden lg:block overflow-y-auto">
+            <h2 class="text-lg font-bold text-slate-800 mb-4">JS Master Guide</h2>
+            <nav id="sidebar-nav" class="flex flex-col space-y-1">
+
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mt-4 mb-2">Part 1: Core Fundamentals</p>
+            <a href="#variables" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Variables (var, let, const)</a>
+            <a href="#data-types" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Data Types</a>
+            <a href="#type-coercion" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Type Coercion</a>
+            <a href="#scope" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Scope</a>
+            <a href="#strict-mode" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">"use strict"</a>
+
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mt-4 mb-2">Part 2: Working with Data</p>
+            <a href="#strings" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Strings & Methods</a>
+            <a href="#arrays" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Arrays & Methods</a>
+            <a href="#objects" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Objects</a>
+            <a href="#map-filter-reduce" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">map, filter, reduce</a>
+            <a href="#date-math" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Date & Math</a>
+            <a href="#json" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">JSON (parse & stringify)</a>
+            <a href="#regex" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Regular Expressions</a>
+
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mt-4 mb-2">Part 3: Functions In-Depth</p>
+            <a href="#function-declaration" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Function Declaration</a>
+            <a href="#function-expression" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Function Expression</a>
+            <a href="#arrow-functions" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Arrow Functions</a>
+            <a href="#hoisting" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Hoisting</a>
+            <a href="#higher-order-functions" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Higher-Order Functions</a>
+            <a href="#closure" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Closures</a>
+            <a href="#recursion" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Recursion</a>
+            <a href="#iife" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">IIFE</a>
+            <a href="#currying" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Function Currying</a>
+            <a href="#partial-application" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Partial Application</a>
+            <a href="#memoization" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Function Memoization</a>
+            <a href="#composition" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Function Composition</a>
+
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mt-4 mb-2">Part 4: Asynchronous JS</p>
+            <a href="#event-loop" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Event Loop & Execution Context</a>
+            <a href="#settimeout-interval" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">setTimeout & setInterval</a>
+            <a href="#callback" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Callback Functions</a>
+            <a href="#promises" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Promises</a>
+            <a href="#async-await" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Async/Await</a>
+
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mt-4 mb-2">Part 5: OOP & 'this'</p>
+            <a href="#this-binding" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">this Binding (call, apply, bind)</a>
+            <a href="#object-methods" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Object Methods</a>
+            <a href="#constructor-functions" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Constructor Functions</a>
+            <a href="#prototype" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Prototype & Inheritance</a>
+            <a href="#classes" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Classes</a>
+            <a href="#symbols-bigint" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Symbols & BigInt</a>
+
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mt-4 mb-2">Part 6: Browser & DOM</p>
+            <a href="#dom" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">DOM Manipulation</a>
+            <a href="#events" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Events & Handlers</a>
+            <a href="#event-propagation" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Event Propagation</a>
+            <a href="#storage" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Local & Session Storage</a>
+
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mt-4 mb-2">Part 7: Advanced Concepts</p>
+            <a href="#modules" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Modules (import/export)</a>
+            <a href="#generator" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Generator Functions</a>
+            <a href="#iterators" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Iterators & Iterables</a>
+            <a href="#set-map" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Set, Map, WeakSet, WeakMap</a>
+            <a href="#rest-spread" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Rest & Spread</a>
+            <a href="#default-params" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Default Parameters</a>
+            <a href="#destructuring" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Destructuring</a>
+            <a href="#performance" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Debounce & Throttle</a>
+            <a href="#error-handling" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Error Handling (try...catch)</a>
+            <a href="#memory-management" class="px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md text-sm font-medium">Memory Management</a>
+
+            </nav>
+
+        </aside>
+
+        <main class="flex-1 p-6 md:p-10">
+            <div class="max-w-4xl mx-auto">
+                <header class="mb-12 text-center">
+                    <h1 class="text-5xl font-bold text-blue-600">The Ultimate JavaScript Guide</h1>
+                    <p class="mt-4 text-xl text-slate-600">A comprehensive resource for freshers and intermediate developers to master JS for interviews.</p>
+                </header>
+
+                <div id="content-sections" class="space-y-16">
+                    </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const sectionsData = [
+            // PART 1: CORE FUNDAMENTALS
+            {
+                id: 'variables',
+                title: '📦 Variables (var, let, const)',
+                definition: "Variables containers hote hain jo data ko memory me store karte hain. JavaScript me variables ko declare karne ke 3 tareeke hote hain: `var`, `let`, aur `const`. \n\n🔹 ES5 tak sirf `var` tha (jo function scoped hota hai). \n🔹 ES6 (2015) se `let` aur `const` aaye jo block-scoped hote hain. \n\nDifference mainly teen cheezon me hai: **scope**, **re-declaration**, aur **re-assignment**.",
+                examples: [
+                    {
+                        title: '`var` (Function Scoped)',
+                        code: `<span class="code-keyword">function</span> <span class="code-function">varTest</span>() {
+    <span class="code-keyword">var</span> x = <span class="code-number">1</span>;
+    <span class="code-keyword">if</span> (<span class="code-keyword">true</span>) {
+        <span class="code-keyword">var</span> x = <span class="code-number">2</span>; <span class="code-comment">// same variable!</span>
+        <span class="code-function">console</span>.<span class="code-function">log</span>(x); <span class="code-comment">// 2</span>
+    }
+    <span class="code-function">console</span>.<span class="code-function">log</span>(x); <span class="code-comment">// 2</span>
+}`,
+                        output: '2\n2'
+                    },
+                    {
+                        title: '`let` (Block Scoped)',
+                        code: `<span class="code-keyword">function</span> <span class="code-function">letTest</span>() {
+    <span class="code-keyword">let</span> x = <span class="code-number">1</span>;
+    <span class="code-keyword">if</span> (<span class="code-keyword">true</span>) {
+        <span class="code-keyword">let</span> x = <span class="code-number">2</span>; <span class="code-comment">// different variable</span>
+        <span class="code-function">console</span>.<span class="code-function">log</span>(x); <span class="code-comment">// 2</span>
+    }
+    <span class="code-function">console</span>.<span class="code-function">log</span>(x); <span class="code-comment">// 1</span>
+}`,
+                        output: '2\n1'
+                    },
+                    {
+                        title: '`const` (Block Scoped, No Re-assignment)',
+                        code: `<span class="code-keyword">const</span> PI = <span class="code-number">3.14</span>;
+<span class="code-function">console</span>.<span class="code-function">log</span>(PI); <span class="code-comment">// 3.14</span>
+PI = <span class="code-number">3.14159</span>; <span class="code-comment">// ❌ TypeError: Assignment to constant variable.</span>`,
+                        output: '3.14\nTypeError'
+                    },
+                    {
+                        title: 'Hoisting Difference',
+                        code: `<span class="code-function">console</span>.<span class="code-function">log</span>(a); <span class="code-comment">// undefined (due to var hoisting)</span>
+<span class="code-keyword">var</span> a = <span class="code-number">10</span>;
+
+<span class="code-function">console</span>.<span class="code-function">log</span>(b); <span class="code-comment">// ❌ ReferenceError (TDZ)</span>
+<span class="code-keyword">let</span> b = <span class="code-number">20</span>;`,
+                        output: 'undefined\nReferenceError'
+                    }
+                ],
+                interview: {
+                    title: '💡 Interview Corner: Variables',
+                    qas: [
+                        { question: "What is the main difference between `var`, `let`, and `const`?", answer: "**Scope:** `var` function-scoped hai; `let` aur `const` block-scoped hain. <br><b>Hoisting:</b> `var` hoist hota hai aur default `undefined` se initialize hota hai, jabki `let` aur `const` bhi hoist hote hain par TDZ (Temporal Dead Zone) me rehte hain. <br><b>Re-assignment:</b> `var` aur `let` re-assign ho sakte hain; `const` re-assign nahi ho sakta." },
+                        { question: "What is the Temporal Dead Zone (TDZ)?", answer: "TDZ woh area hai ek block scope me jahan `let` ya `const` variable declare hone se pehle use access nahi kiya ja sakta. Ye block ke start se lekar variable declaration tak rehta hai. Agar aap is zone me variable access karte hain to `ReferenceError` aata hai." },
+                        { question: "When should you use `const` vs `let`?", answer: "Best practice: hamesha `const` use karo jab tak aapko pata na ho ki value change karni hai. Isse code me predictability badhti hai. Agar value future me change hogi (jaise loop counter), tab `let` use karo. `var` modern JS me avoid karna chahiye." },
+                        { question: "Can the properties of a `const` object be changed? Explain why.", answer: "Haan. `const` sirf variable ke reference ko re-assign hone se rokta hai, uski value ko immutable (unchangeable) nahi banata. Agar `const` variable ek object ko point kar raha hai, to aap us object ki properties ko add, update, ya delete kar sakte hain, lekin aap us variable ko naya object assign nahi kar sakte." },
+                        { question: "What is hoisting in JavaScript?", answer: "Hoisting JavaScript ka default behavior hai jismein declarations (variables aur functions) ko unke scope ke top par move kar diya jaata hai, code execute hone se pehle. Sirf declarations hoist hote hain, initialization nahi." },
+                        { question: "How does hoisting differ for `var`, `let`, and function declarations?", answer: "<b>`var`</b>: Hoist hota hai aur `undefined` se initialize hota hai.<br><b>`let`/`const`</b>: Hoist hote hain, lekin uninitialize rehte hain (TDZ me).<br><b>Function Declarations</b>: Poore ke poore (naam aur body) hoist hote hain." },
+                        { question: "What will be logged in the console for the `var` loop example and why?", answer: "Output: 3, 3, 3. Aisa isliye kyunki `setTimeout` ka callback asynchronous hota hai. Jab tak wo execute hona shuru hota hai, `for` loop poora chal chuka hota hai aur `var i` (jo function-scoped hai) ki final value 3 ho chuki hoti hai. Saare callbacks usi ek `i` ko refer karte hain." },
+                        { question: "How does `let` solve the loop problem?", answer: "`let` block-scoped hota hai. Jab aap `for(let j=0; ...)` use karte hain, har loop iteration ke liye ek naya `j` variable create hota hai. Isliye, har `setTimeout` callback apne specific iteration ke `j` ki value ko capture karta hai, jisse 0, 1, 2 print hota hai." },
+                        { question: "Can you re-declare a variable using `let` or `const` in the same scope?", answer: "Nahi. Agar aap `let` ya `const` se declare kiye gaye variable ko same scope me dobara declare karne ki koshish karenge to `SyntaxError` aayega. `var` ke saath ye possible hai." },
+                        { question: "What happens if you don't initialize a `const` variable?", answer: "Aapko `SyntaxError` milega. `const` variables ko declaration ke time hi value assign karna zaroori hai (`const PI = 3.14;`). Aap `const PI;` nahi likh sakte." }
+                    ],
+
+                commonMistakes: [
+                    "❌ `var` ko loops (`for` loop) me use karna, jisse unexpected behavior (closure issues) hota hai.",
+                    "❌ `const` ko object ya array ke liye use karke sochna ki uski properties/elements change nahi ho sakti.",
+                    "❌ `let` aur `const` ko unke declaration se pehle access karne ki koshish karna (TDZ error ko na samajhna).",
+                    "❌ Global scope me variables declare kar dena, jisse name conflicts aur bugs ho sakte hain."
+                 ],
+                    coding: [
+                        { 
+                            question: "Q1: Output kya hoga?",
+                            code: `<span class="code-keyword">const</span> arr = [<span class="code-number">1</span>, <span class="code-number">2</span>, <span class="code-number">3</span>];
+arr.push(<span class="code-number">4</span>);
+<span class="code-function">console</span>.<span class="code-function">log</span>(arr);
+arr = [<span class="code-number">5</span>, <span class="code-number">6</span>];`,
+                            answer: "[1,2,3,4]\n❌ TypeError: Assignment to constant variable."
+                        },
+                        { 
+                            question: "Q2: Output predict karein?",
+                            code: `<span class="code-keyword">for</span>(<span class="code-keyword">var</span> i=0; i&lt;3; i++){
+    <span class="code-function">setTimeout</span>(() => <span class="code-function">console</span>.<span class="code-function">log</span>(i), 10);
+}
+
+<span class="code-keyword">for</span>(<span class="code-keyword">let</span> j=0; j&lt;3; j++){
+    <span class="code-function">setTimeout</span>(() => <span class="code-function">console</span>.<span class="code-function">log</span>(j), 10);
+}`,
+                            answer: "`var` loop → 3, 3, 3 (kyunki `var` function-scoped hai aur loop khatam hone tak `i` ki value 3 ho jaati hai).<br>`let` loop → 0, 1, 2 (kyunki `let` block-scoped hai aur har iteration ke liye ek naya `j` banta hai)."
+                        }
+                    ]
+                }
+            },
+            {
+                id: 'data-types',
+                title: '🔢 Data Types in JavaScript',
+                definition: "JavaScript ek **dynamically typed** language hai. Matlab variable declare karte waqt data type fix nahi hota, run-time par decide hota hai.<br><br>Data types do category me divided hain:<br>1️⃣ **Primitive Types** (immutable, pass by value): `String`, `Number`, `Boolean`, `Null`, `Undefined`, `Symbol`, `BigInt`<br>2️⃣ **Non-Primitive (Reference) Types** (mutable, pass by reference): `Object`, `Array`, `Function`",
+                examples: [
+                    {
+                        title: 'Primitive Example',
+                        code: `<span class="code-keyword">let</span> str = <span class="code-string">"Hello"</span>;
+<span class="code-keyword">let</span> num = <span class="code-number">42</span>;
+<span class="code-keyword">let</span> isTrue = <span class="code-keyword">true</span>;
+<span class="code-keyword">let</span> empty = <span class="code-keyword">null</span>;
+<span class="code-keyword">let</span> notDefined;
+<span class="code-keyword">let</span> bigNum = <span class="code-number">12345678901234567890n</span>;
+<span class="code-keyword">let</span> sym = <span class="code-function">Symbol</span>(<span class="code-string">"id"</span>);`,
+                        output: 'String, Number, Boolean, Null, Undefined, BigInt, Symbol'
+                    },
+                    {
+                        title: 'Pass by Value vs Pass by Reference',
+                        code: `<span class="code-comment">// Pass by Value (Primitives)</span>
+<span class="code-keyword">let</span> x = <span class="code-number">10</span>;
+<span class="code-keyword">let</span> y = x;
+y = <span class="code-number">20</span>;
+<span class="code-function">console</span>.<span class="code-function">log</span>(x, y); <span class="code-comment">// 10, 20 (x change nahi hua)</span>
+
+<span class="code-comment">// Pass by Reference (Objects/Arrays)</span>
+<span class="code-keyword">let</span> obj1 = { a: 1 };
+<span class="code-keyword">let</span> obj2 = obj1;
+obj2.a = 99;
+<span class="code-function">console</span>.<span class="code-function">log</span>(obj1.a, obj2.a); <span class="code-comment">// 99, 99 (dono change hue)</span>`,
+                        output: '10 20\n99 99'
+                    },
+                    {
+                        title: '`typeof` operator quirks',
+                        code: `<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-keyword">typeof</span> <span class="code-number">42</span>);        <span class="code-comment">// "number"</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-keyword">typeof</span> <span class="code-string">"hello"</span>);    <span class="code-comment">// "string"</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-keyword">typeof</span> <span class="code-keyword">null</span>);       <span class="code-comment">// ❌ "object" (ye JS ka ek historical bug hai)</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-keyword">typeof</span> []);         <span class="code-comment">// "object"</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-keyword">typeof</span> <span class="code-function">function</span>(){}); <span class="code-comment">// "function"</span>`,
+                        output: 'number\nstring\nobject\nobject\nfunction'
+                    }
+                ],
+                interview: {
+                    title: '💡 Interview Corner: Data Types',
+                    qas: [
+                        { question: "JavaScript me kitne primitive data types hote hain?", answer: "7 Primitive data types: String, Number, Boolean, Null, Undefined, Symbol, BigInt." },
+                        { question: "Difference between primitive and non-primitive?", answer: "Primitive immutable hote hain aur 'pass by value' hote hain (unka copy banta hai). Non-primitive (objects/arrays/functions) mutable hote hain aur 'pass by reference' hote hain (memory address share karte hain)." },
+                        { question: "Why does `typeof null` return 'object'?", answer: "Ye JavaScript ka ek purana historical bug hai jo ab backward compatibility ke liye fix nahi kiya gaya." },
+                        { question: "How do you check if a value is an array?", answer: "Hamesha `Array.isArray(value)` use karna chahiye, kyunki `typeof []` 'object' return karta hai." }
+                    ],
+                    coding: [
+                        { 
+                            question: "Ek function likho jo check kare value primitive hai ya non-primitive.",
+                            code: `<span class="code-keyword">function</span> <span class="code-function">isPrimitive</span>(val) {
+    <span class="code-keyword">return</span> (val !== <span class="code-function">Object</span>(val));
+}
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-function">isPrimitive</span>(<span class="code-number">100</span>));
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-function">isPrimitive</span>([<span class="code-number">1</span>,<span class="code-number">2</span>,<span class="code-number">3</span>]));`,
+                            answer: "true<br>false"
+                        }
+                    ]
+                }
+            },
+            {
+                id: 'type-coercion',
+                title: '🔄 Type Coercion',
+                definition: "Jab JavaScript automatically ek value ko ek data type se doosre me convert karta hai, use **Type Coercion** kehte hain. Ye `==` jaise operators ya `+` jaise operations ke waqt hota hai.<br><br>🔹 **Type Conversion (Explicit)** → Jab developer khud convert kare (`Number('123')`).<br>🔹 **Type Coercion (Implicit)** → Jab JS automatically convert kar de (`'5' * 2`).",
+                examples: [
+                    {
+                        title: 'Implicit Coercion Examples',
+                        code: `<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">'5'</span> - <span class="code-number">1</span>);      <span class="code-comment">// 4 (string '5' number 5 me convert ho gaya)</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">'5'</span> + <span class="code-number">1</span>);      <span class="code-comment">// "51" (number 1 string "1" me convert ho gaya)</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-keyword">true</span> + <span class="code-number">1</span>);     <span class="code-comment">// 2 (true number 1 me convert ho gaya)</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>([] + []);      <span class="code-comment">// "" (empty string)</span>`,
+                        output: '4\n"51"\n2\n""'
+                    },
+                    {
+                        title: '== vs === (Abstract vs Strict Equality)',
+                        code: `<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-number">5</span> == <span class="code-string">"5"</span>);     <span class="code-comment">// true (coercion hota hai)</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-number">5</span> === <span class="code-string">"5"</span>);    <span class="code-comment">// false (type aur value dono check hote hain)</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-keyword">null</span> == <span class="code-keyword">undefined</span>); <span class="code-comment">// true (ye ek special case hai)</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-keyword">null</span> === <span class="code-keyword">undefined</span>); <span class="code-comment">// false</span>`,
+                        output: 'true\nfalse\ntrue\nfalse'
+                    },
+                    {
+                        title: 'Truthy/Falsy Values',
+                        code: `<span class="code-comment">// Falsy values: false, 0, -0, 0n, "", null, undefined, NaN</span>
+<span class="code-keyword">if</span> (<span class="code-string">'hello'</span>) { <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">'Truthy!'</span>); } <span class="code-comment">// "Truthy!"</span>
+<span class="code-keyword">if</span> (<span class="code-number">0</span>) { <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">'Falsy!'</span>); }  <span class="code-comment">// (kuch print nahi hoga)</span>`,
+                        output: 'Truthy!'
+                    }
+                ],
+                interview: {
+                    title: '💡 Interview Corner: Type Coercion',
+                    qas: [
+                        { question: "Difference between `==` and `===`?", answer: "`==` (Abstract Equality) compare karne se pehle type coercion karta hai. `===` (Strict Equality) type aur value dono compare karta hai bina coercion ke. Hamesha `===` use karna best practice hai." },
+                        { question: "List all the falsy values in JavaScript.", answer: "8 falsy values hain: `false`, `0`, `-0`, `0n` (BigInt zero), `''` (empty string), `null`, `undefined`, aur `NaN`." },
+                        { question: "What is the output of `[] + {}`?", answer: "Output: `\"[object Object]\"`. Yahan `+` operator dono ko string me convert karne ki koshish karta hai. `[].toString()` -> `\"\"` aur `{}.toString()` -> `\"[object Object]\"`. Result is `\"\" + \"[object Object]\"`." }
+                    ],
+                    coding: [
+                        { 
+                            question: "Q1: Output kya hoga?",
+                            code: `<span class="code-function">console</span>.<span class="code-function">log</span>([] == ![]);`,
+                            answer: "true.<br>Explanation: `![]` (not an empty array) evaluates to `false`. Expression ban jaata hai `[] == false`. Type coercion me, `[]` string me `''` banta hai, fir number me `0` ban jaata hai. `false` number me `0` ban jaata hai. Toh `0 == 0` true hota hai."
+                        },
+                         { 
+                            question: "Q2: Predict the output",
+                            code: `<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-number">1</span> < <span class="code-number">2</span> < <span class="code-number">3</span>);
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-number">3</span> > <span class="code-number">2</span> > <span class="code-number">1</span>);`,
+                            answer: "`true`<br>`false`<br>Explanation: `(1 < 2)` evaluates to `true`. Fir `true < 3` me `true` number `1` me coerce hota hai, so `1 < 3` is `true`.<br>Second case me, `(3 > 2)` is `true`. Fir `true > 1` me `true` number `1` me coerce hota hai, so `1 > 1` is `false`."
+                        }
+                    ]
+                }
+            },
+            {
+                id: 'scope',
+                title: '🌍 Scope in JavaScript',
+                definition: "Scope ye define karta hai ki aapke code me variables aur functions kahan se accessible hain.<br><br>1️⃣ **Global Scope:** Sabse bahar ka scope. Yahan declare kiye gaye variables pure program me available hote hain.<br>2️⃣ **Function Scope:** `var` keyword se declare kiye gaye variables sirf us function ke andar accessible hote hain.<br>3️⃣ **Block Scope:** `let` aur `const` se declare kiye gaye variables sirf `{}` curly braces ke block ke andar accessible hote hain.",
+                examples: [
+                    {
+                        title: 'Function vs Block Scope',
+                        code: `<span class="code-keyword">function</span> <span class="code-function">run</span>() {
+    <span class="code-keyword">var</span> functionScoped = <span class="code-string">"I'm function-scoped"</span>;
+    <span class="code-keyword">let</span> blockScoped = <span class="code-string">"I'm block-scoped"</span>;
+    <span class="code-keyword">if</span> (<span class="code-keyword">true</span>) {
+        <span class="code-keyword">var</span> functionScoped = <span class="code-string">"I'm still function-scoped"</span>; <span class="code-comment">// Overwrites</span>
+        <span class="code-keyword">let</span> blockScoped = <span class="code-string">"I'm a new block-scoped variable"</span>;
+    }
+    <span class="code-function">console</span>.<span class="code-function">log</span>(functionScoped);
+    <span class="code-function">console</span>.<span class="code-function">log</span>(blockScoped);
+}
+<span class="code-function">run</span>();`,
+                        output: "I'm still function-scoped\nI'm block-scoped"
+                    },
+                    {
+                        title: 'Lexical Scope (Closures)',
+                        code: `<span class="code-keyword">function</span> <span class="code-function">outer</span>() {
+    <span class="code-keyword">const</span> outerVar = <span class="code-string">"I'm outside!"</span>;
+    <span class="code-keyword">function</span> <span class="code-function">inner</span>() {
+        <span class="code-comment">// inner function can access outer function's variables</span>
+        <span class="code-function">console</span>.<span class="code-function">log</span>(outerVar);
+    }
+    <span class="code-function">inner</span>();
+}
+<span class="code-function">outer</span>();`,
+                        output: "I'm outside!"
+                    }
+                ],
+                interview: {
+                    title: '💡 Interview Corner: Scope',
+                    qas: [
+                        { question: "What is Lexical Scope?", answer: "Lexical scope (static scope) ka matlab hai ki variable ka scope code likhte waqt hi define ho jaata hai. Inner functions apne parent functions ke variables ko access kar sakte hain. Ye closures ka foundation hai." },
+                        { question: "What is Scope Chain?", answer: "Jab ek variable ko access kiya jaata hai, JS engine pehle current scope me dekhta hai. Agar nahi milta, to woh outer scope me dekhta hai, fir uske outer scope me, aur ye process global scope tak chalta hai. Isi chain ko Scope Chain kehte hain." },
+                        { question: "Why is it a bad practice to declare variables in the global scope?", answer: "Global variables ko code me kahin se bhi modify kiya ja sakta hai, jisse unexpected bugs aa sakte hain aur debugging mushkil ho jaati hai. Isse 'namespace pollution' bhi hota hai, jahan aapke variables dusre scripts ke variables se takra sakte hain." }
+                    ]
+                }
+            },
+            {
+                id: 'strict-mode',
+                title: '⚠️ "use strict" in JavaScript',
+                definition: "'use strict' ek directive hai jo ES5 me introduce hua tha. Ise script ya function ke top par likhne se JavaScript ek **restricted / safer mode** me run hota hai. Ye common mistakes ko errors me badal deta hai.<br><br>**Benefits:**<br>1. Accidental global variable banane se rokta hai.<br>2. Silent errors ko explicit errors me badal deta hai.<br>3. Duplicate parameter names ko error banata hai.<br>4. `this` ka default binding `undefined` kar deta hai (window/global object nahi).",
+                examples: [
+                    {
+                        title: 'Accidental Global Variable Creation Blocked',
+                        code: `<span class="code-keyword">function</span> <span class="code-function">doSomething</span>() {
+    <span class="code-string">'use strict'</span>;
+    message = <span class="code-string">"Hi"</span>; <span class="code-comment">// ❌ ReferenceError, kyunki message declare nahi hai</span>
+}
+<span class="code-function">doSomething</span>();`,
+                        output: 'ReferenceError: message is not defined'
+                    },
+                    {
+                        title: '`this` in Functions',
+                        code: `<span class="code-string">'use strict'</span>;
+<span class="code-keyword">function</span> <span class="code-function">showThis</span>() {
+    <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-keyword">this</span>);
+}
+<span class="code-function">showThis</span>();`,
+                        output: 'undefined (non-strict mode me ye `window` object hota)'
+                    }
+                ],
+                interview: {
+                    title: '💡 Interview Corner: "use strict"',
+                    qas: [
+                        { question: "Is 'use strict' applied to the whole script if used inside a function?", answer: "Nahi. Agar function ke andar likha hai, to strict mode sirf us function ke scope tak limited rehta hai." },
+                        { question: "Why is `use strict` important?", answer: "Ye code ko secure banata hai, common silent errors ko pakadta hai, aur developers ko bad practices se door rakhta hai, jisse code quality improve hoti hai. Modern JS tools jaise modules aur classes by default strict mode me run hote hain." }
+                    ]
+                }
+            },
+            // PART 2: WORKING WITH DATA
+            {
+                id: 'strings',
+                title: '📜 Strings & Methods',
+                definition: "String ek primitive data type hai jo text ko represent karta hai. JavaScript me strings **immutable** hote hain, matlab unke methods hamesha ek naya string return karte hain, original ko change nahi karte.",
+                examples: [
+                    {
+                        title: 'Common String Methods',
+                        code: `<span class="code-keyword">let</span> text = <span class="code-string">"  JavaScript is Fun!  "</span>;
+
+<span class="code-function">console</span>.<span class="code-function">log</span>(text.<span class="code-function">length</span>);                <span class="code-comment">// 23</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(text.<span class="code-function">trim</span>());                  <span class="code-comment">// "JavaScript is Fun!"</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(text.<span class="code-function">toUpperCase</span>());          <span class="code-comment">// "  JAVASCRIPT IS FUN!  "</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(text.<span class="code-function">includes</span>(<span class="code-string">'Fun'</span>));        <span class="code-comment">// true</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(text.<span class="code-function">slice</span>(<span class="code-number">2</span>, <span class="code-number">12</span>));         <span class="code-comment">// "JavaScript"</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(text.<span class="code-function">replace</span>(<span class="code-string">'Fun'</span>, <span class="code-string">'Awesome'</span>)); <span class="code-comment">// "  JavaScript is Awesome!  "</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(text.<span class="code-function">split</span>(<span class="code-string">' '</span>));            <span class="code-comment">// ['', '', 'JavaScript', 'is', 'Fun!', '', '']</span>`,
+                        output: "Various string outputs as shown in comments."
+                    }
+                ],
+                interview: {
+                    title: '💡 Interview Corner: Strings',
+                    coding: [
+                        {
+                            question: "Ek function likhein jo check kare ki string palindrome hai ya nahi.",
+                            solution: `<span class="code-keyword">function</span> <span class="code-function">isPalindrome</span>(str) {
+    <span class="code-keyword">const</span> reversedStr = str.<span class="code-function">split</span>(<span class="code-string">''</span>).<span class="code-function">reverse</span>().<span class="code-function">join</span>(<span class="code-string">''</span>);
+    <span class="code-keyword">return</span> str === reversedStr;
+}
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-function">isPalindrome</span>(<span class="code-string">'madam'</span>)); <span class="code-comment">// true</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-function">isPalindrome</span>(<span class="code-string">'hello'</span>)); <span class="code-comment">// false</span>`,
+                            output: 'true<br>false'
+                        }
+                    ]
+                }
+            },
+            {
+                id: 'arrays',
+                title: '📋 Arrays & Methods',
+                definition: "Array ek special object hai jo ordered collection of values ko store karta hai. Ye values kisi bhi data type ki ho sakti hain.",
+                examples: [
+                    {
+                        title: 'Common Array Methods (Mutating)',
+                        code: `<span class="code-keyword">let</span> fruits = [<span class="code-string">'Apple'</span>, <span class="code-string">'Banana'</span>];
+fruits.<span class="code-function">push</span>(<span class="code-string">'Orange'</span>);    <span class="code-comment">// Adds to end -> ['Apple', 'Banana', 'Orange']</span>
+fruits.<span class="code-function">pop</span>();         <span class="code-comment">// Removes from end -> ['Apple', 'Banana']</span>
+fruits.<span class="code-function">unshift</span>(<span class="code-string">'Mango'</span>);  <span class="code-comment">// Adds to start -> ['Mango', 'Apple', 'Banana']</span>
+fruits.<span class="code-function">shift</span>();       <span class="code-comment">// Removes from start -> ['Apple', 'Banana']</span>
+fruits.<span class="code-function">splice</span>(<span class="code-number">1</span>, <span class="code-number">0</span>, <span class="code-string">'Cherry'</span>); <span class="code-comment">// Inserts at index 1 -> ['Apple', 'Cherry', 'Banana']</span>`,
+                        output: "Various array states. These methods change the original array."
+                    },
+                    {
+                        title: 'Common Array Methods (Non-mutating)',
+                        code: `<span class="code-keyword">const</span> nums = [<span class="code-number">1</span>, <span class="code-number">2</span>, <span class="code-number">3</span>, <span class="code-number">4</span>];
+<span class="code-keyword">const</span> sliced = nums.<span class="code-function">slice</span>(<span class="code-number">1</span>, <span class="code-number">3</span>);  <span class="code-comment">// [2, 3]</span>
+<span class="code-keyword">const</span> combined = nums.<span class="code-function">concat</span>([<span class="code-number">5</span>, <span class="code-number">6</span>]); <span class="code-comment">// [1, 2, 3, 4, 5, 6]</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(nums); <span class="code-comment">// [1, 2, 3, 4] (Original array is unchanged)</span>`,
+                        output: "These methods return a new array."
+                    }
+                ],
+                interview: {
+                    title: '💡 Interview Corner: Arrays',
+                    qas: [
+                        { question: "What is the difference between `slice` and `splice`?", answer: "`slice()` original array ko modify nahi karta, yeh ek naya 'sliced' array return karta hai. `splice()` original array ko modify karta hai (elements add/remove karke) aur removed elements ka array return karta hai." }
+                    ],
+                    coding: [
+                        {
+                            question: "Ek array se saare duplicate values hatayein.",
+                            solution: `<span class="code-keyword">function</span> <span class="code-function">removeDuplicates</span>(arr) {
+    <span class="code-keyword">return</span> [...<span class="code-keyword">new</span> <span class="code-function">Set</span>(arr)];
+}
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-function">removeDuplicates</span>([<span class="code-number">1</span>, <span class="code-number">2</span>, <span class="code-number">2</span>, <span class="code-number">3</span>, <span class="code-number">4</span>, <span class="code-number">4</span>]));`,
+                            output: '[1, 2, 3, 4]'
+                        }
+                    ]
+                }
+            },
+            {
+                id: 'objects',
+                title: '📝 Objects',
+                definition: "Object ek non-primitive data type hai jo key-value pairs ka collection hota hai. Keys strings ya symbols hote hain, aur values kuch bhi ho sakti hain.",
+                examples: [
+                    {
+                        title: 'Creating and Accessing Properties',
+                        code: `<span class="code-keyword">const</span> person = {
+    name: <span class="code-string">'Raj'</span>,
+    age: <span class="code-number">28</span>,
+    <span class="code-string">'is-developer'</span>: <span class="code-keyword">true</span>
+};
+
+<span class="code-comment">// Dot notation</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(person.name); <span class="code-comment">// Raj</span>
+
+<span class="code-comment">// Bracket notation (useful for special characters in keys)</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(person[<span class="code-string">'is-developer'</span>]); <span class="code-comment">// true</span>`,
+                        output: 'Raj\ntrue'
+                    },
+                    {
+                        title: 'Object Methods: keys, values, entries',
+                        code: `<span class="code-keyword">const</span> car = { make: <span class="code-string">'Honda'</span>, model: <span class="code-string">'Civic'</span> };
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-function">Object</span>.<span class="code-function">keys</span>(car));   <span class="code-comment">// ['make', 'model']</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-function">Object</span>.<span class="code-function">values</span>(car)); <span class="code-comment">// ['Honda', 'Civic']</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-function">Object</span>.<span class="code-function">entries</span>(car)); <span class="code-comment">// [['make', 'Honda'], ['model', 'Civic']]</span>`,
+                        output: "Outputs are shown in comments."
+                    }
+                ],
+                interview: {
+                    title: '💡 Interview Corner: Objects',
+                    qas: [
+                        { question: "How can you check if a property exists in an object?", answer: "Do tareeke hain: `object.hasOwnProperty('propName')` jo sirf object ki apni properties check karta hai, aur `propName in object` jo prototype chain me bhi check karta hai." },
+                        { question: "What is the difference between Shallow Copy and Deep Copy of an object?", answer: "**Shallow Copy:** Sirf top-level properties copy karta hai. Agar koi property nested object hai, to uska reference copy hota hai, actual object nahi. (`...spread`, `Object.assign`).<br>**Deep Copy:** Recursively saari properties ko copy karta hai, jisse original object se koi reference nahi rehta. (`JSON.parse(JSON.stringify(obj))` ek common tareeka hai, lekin ye functions ya `undefined` ko handle nahi karta)." }
+                    ]
+                }
+            },
+            {
+                id: 'map-filter-reduce',
+                title: '✨ map, filter, reduce',
+                definition: "Yeh teen powerful Higher-Order Functions hain jo arrays ke saath kaam karne ke liye use hote hain. Ye original array ko modify nahi karte, balki ek naya array (ya value in case of reduce) return karte hain.",
+                examples: [
+                    {
+                        title: '`.map()` - Har element ko transform karke ek naya array banata hai.',
+                        code: `<span class="code-keyword">const</span> numbers = [<span class="code-number">1</span>, <span class="code-number">2</span>, <span class="code-number">3</span>];
+<span class="code-keyword">const</span> doubled = numbers.<span class="code-function">map</span>(num => num * <span class="code-number">2</span>);
+<span class="code-function">console</span>.<span class="code-function">log</span>(doubled); <span class="code-comment">// [2, 4, 6]</span>`,
+                        output: '[2, 4, 6]'
+                    },
+                    {
+                        title: '`.filter()` - Ek condition pass karne wale elements ka naya array banata hai.',
+                        code: `<span class="code-keyword">const</span> numbers = [<span class="code-number">1</span>, <span class="code-number">2</span>, <span class="code-number">3</span>, <span class="code-number">4</span>, <span class="code-number">5</span>];
+<span class="code-keyword">const</span> evens = numbers.<span class="code-function">filter</span>(num => num % <span class="code-number">2</span> === <span class="code-number">0</span>);
+<span class="code-function">console</span>.<span class="code-function">log</span>(evens); <span class="code-comment">// [2, 4]</span>`,
+                        output: '[2, 4]'
+                    },
+                    {
+                        title: '`.reduce()` - Ek array ko ek single value me reduce (ya accumulate) karta hai.',
+                        code: `<span class="code-keyword">const</span> numbers = [<span class="code-number">1</span>, <span class="code-number">2</span>, <span class="code-number">3</span>, <span class="code-number">4</span>, <span class="code-number">5</span>];
+<span class="code-keyword">const</span> sum = numbers.<span class="code-function">reduce</span>((accumulator, currentValue) => accumulator + currentValue, <span class="code-number">0</span>);
+<span class="code-function">console</span>.<span class="code-function">log</span>(sum); <span class="code-comment">// 15</span>`,
+                        output: '15'
+                    }
+                ],
+                interview: {
+                    title: '💡 Interview Corner: map, filter, reduce',
+                    coding: [
+                        {
+                            question: "Ek array of objects diya gaya hai. Sirf active users (jinka `isActive` true hai) ke naam ka ek naya array banayein.",
+                            solution: `<span class="code-keyword">const</span> users = [
+    { id: <span class="code-number">1</span>, name: <span class="code-string">'Alice'</span>, isActive: <span class="code-keyword">true</span> },
+    { id: <span class="code-number">2</span>, name: <span class="code-string">'Bob'</span>, isActive: <span class="code-keyword">false</span> },
+    { id: <span class="code-number">3</span>, name: <span class="code-string">'Charlie'</span>, isActive: <span class="code-keyword">true</span> }
+];
+<span class="code-keyword">const</span> activeUserNames = users
+    .<span class="code-function">filter</span>(user => user.isActive)
+    .<span class="code-function">map</span>(user => user.name);
+
+<span class="code-function">console</span>.<span class="code-function">log</span>(activeUserNames);`,
+                            output: "['Alice', 'Charlie']"
+                        }
+                    ]
+                }
+            },
+            {
+                id: 'date-math',
+                title: '📅 Date & Math',
+                definition: "JavaScript dates aur complex mathematical operations ke liye built-in objects (`Date` aur `Math`) provide karta hai.",
+                examples: [
+                    {
+                        title: 'Date Object',
+                        code: `<span class="code-keyword">const</span> now = <span class="code-keyword">new</span> <span class="code-function">Date</span>();
+<span class="code-function">console</span>.<span class="code-function">log</span>(now.<span class="code-function">toString</span>());
+<span class="code-function">console</span>.<span class="code-function">log</span>(now.<span class="code-function">getFullYear</span>());
+<span class="code-function">console</span>.<span class="code-function">log</span>(now.<span class="code-function">toLocaleDateString</span>());`,
+                        output: 'Current date string\nCurrent year (e.g., 2025)\nCurrent date (e.g., 8/31/2025)'
+                    },
+                    {
+                        title: 'Math Object',
+                        code: `<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-keyword">Math</span>.<span class="code-function">random</span>()); <span class="code-comment">// 0 se 1 ke beech random number</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-keyword">Math</span>.<span class="code-function">max</span>(<span class="code-number">5</span>, <span class="code-number">10</span>, <span class="code-number">2</span>)); <span class="code-comment">// 10</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-keyword">Math</span>.<span class="code-function">floor</span>(<span class="code-number">4.9</span>)); <span class="code-comment">// 4</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-keyword">Math</span>.<span class="code-function">ceil</span>(<span class="code-number">4.1</span>));  <span class="code-comment">// 5</span>`,
+                        output: 'Various math outputs.'
+                    }
+                ]
+            },
+            {
+                id: 'json',
+                title: '🔗 JSON (parse & stringify)',
+                definition: "JSON (JavaScript Object Notation) ek lightweight data-interchange format hai. Servers aur web applications ke beech data transfer karne ke liye ye standard ban gaya hai.<br><br>🔹 `JSON.stringify()`: JavaScript object ko JSON string me convert karta hai.<br>🔹 `JSON.parse()`: JSON string ko JavaScript object me convert karta hai.",
+                examples: [
+                    {
+                        title: 'JS Object to JSON String (`stringify`)',
+                        code: `<span class="code-keyword">const</span> user = { name: <span class="code-string">'Amit'</span>, age: <span class="code-number">30</span>, isAdmin: <span class="code-keyword">false</span> };
+<span class="code-keyword">const</span> jsonString = <span class="code-function">JSON</span>.<span class="code-function">stringify</span>(user);
+<span class="code-function">console</span>.<span class="code-function">log</span>(jsonString);`,
+                        output: '{"name":"Amit","age":30,"isAdmin":false}'
+                    },
+                    {
+                        title: 'JSON String to JS Object (`parse`)',
+                        code: `<span class="code-keyword">const</span> jsonString = <span class="code-string">'{"name":"Priya","city":"Mumbai"}'</span>;
+<span class="code-keyword">const</span> userObject = <span class="code-function">JSON</span>.<span class="code-function">parse</span>(jsonString);
+<span class="code-function">console</span>.<span class="code-function">log</span>(userObject.name);`,
+                        output: 'Priya'
+                    }
+                ],
+                interview: {
+                    title: '💡 Interview Corner: JSON',
+                    qas: [
+                        { question: "What is the main difference between a JavaScript object and JSON?", answer: "JSON ek string format hai. Uski keys hamesha double quotes me honi chahiye. JSON me functions, `undefined`, ya symbols nahi ho sakte." },
+                        { question: "What happens when you `stringify` a property with an `undefined` value?", answer: "Wo property stringify hone par JSON se omit (hata di) jaati hai." }
+                    ]
+                }
+            },
+            {
+                id: 'regex',
+                title: '🔤 Regular Expressions',
+                definition: "Regular Expressions (RegEx) patterns hote hain jo character combinations ko match karne ke liye use hote hain. Ye form validation, searching, aur text manipulation me bohot powerful hote hain.",
+                examples: [
+                    {
+                        title: '`.test()` - Checks for a match (returns true/false)',
+                        code: `<span class="code-keyword">const</span> text = <span class="code-string">'hello world'</span>;
+<span class="code-keyword">const</span> pattern = /world/;
+<span class="code-function">console</span>.<span class="code-function">log</span>(pattern.<span class="code-function">test</span>(text));`,
+                        output: 'true'
+                    },
+                    {
+                        title: '`.match()` - Finds all matches (returns an array)',
+                        code: `<span class="code-keyword">const</span> text = <span class="code-string">'The rain in SPAIN stays mainly in the plain'</span>;
+<span class="code-keyword">const</span> pattern = /ain/gi; <span class="code-comment">// g: global, i: case-insensitive</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(text.<span class="code-function">match</span>(pattern));`,
+                        output: "['ain', 'AIN', 'ain', 'ain']"
+                    }
+                ],
+                interview: {
+                    title: '💡 Interview Corner: RegEx',
+                    qas: [
+                        { question: "What are flags in RegEx?", answer: "Flags RegEx ke behavior ko modify karte hain. Common flags hain: `g` (global search), `i` (case-insensitive search), `m` (multiline search)." },
+                        { question: "Write a simple RegEx to validate an email address.", answer: "A very basic regex could be `const emailRegex = /\\S+@\\S+\\.\\S+/;`. (Note: Production-level email regex is much more complex)." }
+                    ]
+                }
+            },
+
+            // PART 3: FUNCTIONS IN-DEPTH
+            {
+                id: 'function-declaration',
+                title: 'Function Declaration',
+                definition: "Ye function banane ka traditional tareeka hai. Iski sabse badi khasiyat hai ki ye **hoist** ho jaata hai, matlab aap ise define karne se pehle bhi call kar sakte hain.",
+                examples: [
+                    {
+                        title: 'Hoisting in Action',
+                        code: `sayHello(); <span class="code-comment">// Works fine!</span>
+<span class="code-keyword">function</span> <span class="code-function">sayHello</span>() {
+    <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">"Hello!"</span>);
+}`,
+                        output: 'Hello!'
+                    }
+                ]
+            },
+            {
+                id: 'function-expression',
+                title: 'Function Expression',
+                definition: "Jab ek function ko ek variable me assign kiya jaata hai, use Function Expression kehte hain. Ye hoist **nahi** hota. Matlab, ise use karne se pehle define karna zaroori hai.",
+                examples: [
+                    {
+                        title: 'No Hoisting',
+                        code: `sayHi(); <span class="code-comment">// ❌ TypeError: sayHi is not a function</span>
+<span class="code-keyword">var</span> sayHi = <span class="code-keyword">function</span>() {
+    <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">"Hi!"</span>);
+};`,
+                        output: 'TypeError: sayHi is not a function'
+                    }
+                ],
+                interview: {
+                    title: '💡 Interview Corner: Declarations vs Expressions',
+                    qas: [
+                        { question: "What is the main difference between a function declaration and a function expression?", answer: "Function Declarations are hoisted, meaning they are moved to the top of their scope and can be called before they are defined. Function Expressions are not hoisted and can only be called after the variable they are assigned to has been defined." }
+                    ]
+                }
+            },
+            {
+                id: 'arrow-functions',
+                title: '➡️ Arrow Functions',
+                definition: "Arrow functions (ES6) function likhne ka ek chota (concise) syntax provide karte hain. Inki sabse important feature hai ki inka apna `this` context nahi hota; ye `this` ko apne parent (lexical) scope se inherit karte hain.",
+                examples: [
+                    {
+                        title: 'Concise Syntax',
+                        code: `<span class="code-comment">// Traditional function expression</span>
+<span class="code-keyword">const</span> add = <span class="code-keyword">function</span>(a, b) {
+    <span class="code-keyword">return</span> a + b;
+};
+
+<span class="code-comment">// Arrow function</span>
+<span class="code-keyword">const</span> arrowAdd = (a, b) => a + b;`,
+                        output: 'Both functions do the same thing.'
+                    },
+                    {
+                        title: 'Lexical `this` Behavior',
+                        code: `<span class="code-keyword">const</span> person = {
+    name: <span class="code-string">'Rahul'</span>,
+    greet: <span class="code-keyword">function</span>() {
+        <span class="code-function">setTimeout</span>(() => {
+            <span class="code-comment">// Arrow function 'this' ko outer 'greet' function se leta hai</span>
+            <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">'Hello, '</span> + <span class="code-keyword">this</span>.name);
+        }, <span class="code-number">100</span>);
+    }
+};
+person.<span class="code-function">greet</span>();`,
+                        output: 'Hello, Rahul'
+                    }
+                ],
+                interview: {
+                    title: '💡 Interview Corner: Arrow Functions',
+                    qas: [
+                        { question: "What are the main differences between Arrow functions and regular functions?", answer: "1. **`this` binding:** Arrow functions have lexical `this`, regular functions have dynamic `this`.<br>2. **`arguments` object:** Arrow functions do not have their own `arguments` object.<br>3. **Constructors:** Arrow functions cannot be used as constructors (with `new`)." },
+                        { question: "When should you NOT use an Arrow Function?", answer: "Jab aapko dynamic `this` ki zaroorat ho, jaise ki object methods (`{ myMethod() {...} }`) ya event listeners me jahan aapko `this` se element ko refer karna ho." }
+                    ]
+                }
+            },
+            {
+                id: 'hoisting',
+                title: '🏗️ Hoisting',
+                definition: "Hoisting JavaScript ka default behavior hai jismein declarations (variables aur functions) ko unke scope ke top par move kar diya jaata hai, code execute hone se pehle. Sirf declarations hoist hote hain, initialization nahi.<br><br>🔹 `var` hoist hota hai aur `undefined` se initialize hota hai.<br>🔹 `let` aur `const` hoist hote hain, lekin uninitialize rehte hain, jisse **Temporal Dead Zone (TDZ)** banta hai.<br>🔹 Function declarations poore ke poore hoist hote hain.",
+                examples: [
+                    {
+                        title: '`var` vs `let` Hoisting',
+                        code: `<span class="code-function">console</span>.<span class="code-function">log</span>(myVar); <span class="code-comment">// undefined</span>
+<span class="code-keyword">var</span> myVar = <span class="code-number">5</span>;
+
+<span class="code-function">console</span>.<span class="code-function">log</span>(myLet); <span class="code-comment">// ❌ ReferenceError: Cannot access 'myLet' before initialization</span>
+<span class="code-keyword">let</span> myLet = <span class="code-number">10</span>;`,
+                        output: 'undefined\nReferenceError'
+                    }
+                ],
+                interview: {
+                    title: '💡 Interview Corner: Hoisting',
+                    qas: [
+                        { question: "What is the Temporal Dead Zone (TDZ)?", answer: "TDZ woh area hai ek block scope me jahan `let` ya `const` variable declare hone se pehle use access nahi kiya ja sakta. Ye block ke start se lekar variable declaration tak rehta hai." }
+                    ]
+                }
+            },
+            {
+                id: 'higher-order-functions',
+                title: '🏭 Higher-Order Functions (HOF)',
+                definition: "Ek Higher-Order Function (HOF) ek aisa function hai jo ya toh ek function ko argument ke roop mein leta hai, ya ek function return karta hai, ya dono. `map`, `filter`, `reduce` iske best examples hain.",
+                examples: [
+                    {
+                        title: 'HOF that takes a function as an argument',
+                        code: `<span class="code-keyword">function</span> <span class="code-function">operate</span>(a, b, operation) {
+    <span class="code-keyword">return</span> <span class="code-function">operation</span>(a, b);
+}
+<span class="code-keyword">const</span> add = (x, y) => x + y;
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-function">operate</span>(<span class="code-number">5</span>, <span class="code-number">3</span>, add));`,
+                        output: '8'
+                    },
+                    {
+                        title: 'HOF that returns a function',
+                        code: `<span class="code-keyword">function</span> <span class="code-function">multiplyBy</span>(factor) {
+    <span class="code-keyword">return function</span>(number) {
+        <span class="code-keyword">return</span> number * factor;
+    };
+}
+<span class="code-keyword">const</span> double = <span class="code-function">multiplyBy</span>(<span class="code-number">2</span>);
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-function">double</span>(<span class="code-number">10</span>));`,
+                        output: '20'
+                    }
+                ]
+            },
+            {
+                id: 'closure',
+                title: '🎒 Closures',
+                definition: "Closure ek function aur uske lexical environment (surrounding state) ka combination hai. Simple shabdon me, ek inner function apne outer function ke variables ko **yaad rakhta hai**, chahe outer function execute ho chuka ho.",
+                examples: [
+                    {
+                        title: 'Classic Closure Example',
+                        code: `<span class="code-keyword">function</span> <span class="code-function">outerFunction</span>() {
+    <span class="code-keyword">let</span> outerVariable = <span class="code-string">'I am from the outside!'</span>;
+    <span class="code-keyword">return function</span> <span class="code-function">innerFunction</span>() {
+        <span class="code-function">console</span>.<span class="code-function">log</span>(outerVariable); <span class="code-comment">// Accesses outer scope</span>
+    };
+}
+<span class="code-keyword">const</span> myClosure = <span class="code-function">outerFunction</span>();
+myClosure();`,
+                        output: 'I am from the outside!'
+                    }
+                ],
+                interview: {
+                    title: '💡 Interview Corner: Closures',
+                    qas: [
+                        { question: "Explain a practical use case for closures.", answer: "Closures ka sabse common use case data privacy ya **encapsulation** hai. Aap ek function ke andar private variables bana sakte hain jo sirf us function ke dwara return kiye gaye functions se hi accessible honge. Ye modules aur factory functions me use hota hai." },
+                        { question: "What is a potential downside of closures?", answer: "Kyunki closure outer scope ka reference rakhta hai, woh variables garbage collect nahi ho paate jab tak closure zinda hai. Isse **memory leaks** ho sakte hain agar aache se manage na kiya jaye." }
+                    ]
+                }
+            },
+            {
+                id: 'recursion',
+                title: '🔁 Recursion',
+                definition: "Recursion ek programming technique hai jismein ek function problem solve karne ke liye apne aap ko call karta hai. Har recursive function me do cheezein honi chahiye:<br>1. **Base Case:** Ek condition jo recursion ko stop karti hai.<br>2. **Recursive Case:** Jahaan function apne aap ko call karta hai (problem ke chote version ke saath).",
+                examples: [
+                    {
+                        title: 'Calculating Factorial with Recursion',
+                        code: `<span class="code-keyword">function</span> <span class="code-function">factorial</span>(n) {
+    <span class="code-comment">// Base Case</span>
+    <span class="code-keyword">if</span> (n <= <span class="code-number">1</span>) {
+        <span class="code-keyword">return</span> <span class="code-number">1</span>;
+    }
+    <span class="code-comment">// Recursive Case</span>
+    <span class="code-keyword">return</span> n * <span class="code-function">factorial</span>(n - <span class="code-number">1</span>);
+}
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-function">factorial</span>(<span class="code-number">5</span>));`,
+                        output: '120'
+                    }
+                ],
+                interview: {
+                    title: '💡 Interview Corner: Recursion',
+                    qas: [
+                        { question: "What is a 'stack overflow' error in recursion?", answer: "Agar recursive function ka base case galat hai ya kabhi reach nahi hota, to function apne aap ko anant baar call karta rahega. Har call call-stack me ek naya frame add karta hai. Jab stack ki memory bhar jaati hai, 'stack overflow' error aata hai." }
+                    ]
+                }
+            },
+            {
+                id: 'iife',
+                title: '💣 IIFE (Immediately Invoked Function Expression)',
+                definition: "An IIFE ek aisi function hai jo define hote hi turant execute ho jaati hai. Ye ek design pattern hai jo global namespace ko pollute hone se bachane ke liye private scope banata hai. ES6 modules ke aane se iska use kam ho gaya hai, lekin ye ek important concept hai.",
+                examples: [
+                    {
+                        title: 'Creating a Private Scope',
+                        code: `(<span class="code-keyword">function</span>() {
+    <span class="code-keyword">var</span> privateMessage = <span class="code-string">"This is private."</span>;
+    <span class="code-function">console</span>.<span class="code-function">log</span>(privateMessage);
+})();
+
+<span class="code-function">console</span>.<span class="code-function">log</span>(privateMessage); <span class="code-comment">// ❌ ReferenceError</span>`,
+                        output: 'This is private.\nReferenceError: privateMessage is not defined'
+                    }
+                ]
+            },
+            {
+                id: 'currying',
+                title: '🍛 Function Currying',
+                definition: "Currying ek technique hai jismein hum ek function jo multiple arguments leta hai (e.g., `f(a, b, c)`), usse aisi sequence of functions mein transform karte hain jo ek-ek karke ek hi argument lete hain (e.g., `f(a)(b)(c)`).",
+                examples: [
+                    {
+                        title: 'Currying an `add` function',
+                        code: `<span class="code-keyword">const</span> <span class="code-function">curryAdd</span> = (a) => (b) => (c) => a + b + c;
+<span class="code-keyword">const</span> add5 = <span class="code-function">curryAdd</span>(<span class="code-number">5</span>); <span class="code-comment">// Returns a function that adds 5</span>
+<span class="code-keyword">const</span> add5and10 = <span class="code-function">add5</span>(<span class="code-number">10</span>); <span class="code-comment">// Returns a function that adds 5 and 10</span>
+<span class="code-keyword">const</span> result = <span class="code-function">add5and10</span>(<span class="code-number">3</span>);
+
+<span class="code-function">console</span>.<span class="code-function">log</span>(result);`,
+                        output: '18'
+                    }
+                ],
+                interview: {
+                    title: '💡 Interview Corner: Currying',
+                    qas: [
+                        { question: "What are the benefits of currying?", answer: "Isse reusable aur specialized functions banana aasan ho jaata hai (jaise `add5`). Yeh function composition mein madad karta hai aur code ko zyada modular aur readable banata hai." }
+                    ]
+                }
+            },
+            {
+                id: 'partial-application',
+                title: '🧩 Partial Application',
+                definition: "Partial Application ek technique hai jismein aap ek function ke kuch arguments ko 'fix' ya 'pre-fill' kar dete hain, aur ek naya function return karte hain jo baaki ke arguments leta hai. `bind()` method iska ek acha example hai.",
+                examples: [
+                    {
+                        title: 'Partial Application with `.bind()`',
+                        code: `<span class="code-keyword">function</span> <span class="code-function">multiply</span>(a, b, c) {
+    <span class="code-keyword">return</span> a * b * c;
+}
+<span class="code-comment">// We pre-fill the first argument 'a' with 2</span>
+<span class="code-keyword">const</span> multiplyBy2 = multiply.<span class="code-function">bind</span>(<span class="code-keyword">null</span>, <span class="code-number">2</span>);
+
+<span class="code-comment">// Now we only need to provide 'b' and 'c'</span>
+<span class="code-keyword">const</span> result = <span class="code-function">multiplyBy2</span>(<span class="code-number">5</span>, <span class="code-number">10</span>);
+<span class="code-function">console</span>.<span class="code-function">log</span>(result);`,
+                        output: '100'
+                    }
+                ],
+                interview: {
+                    title: '💡 Interview Corner: Partial Application',
+                    qas: [
+                        { question: "What is the main difference between Currying and Partial Application?", answer: "Currying hamesha ek function return karta hai jo sirf **ek** argument leta hai, aur yeh ek chain banata hai. Partial Application ek function return karta hai jo baaki ke **saare** arguments ek saath le sakta hai. Currying ek specific type ki partial application hai." }
+                    ]
+                }
+            },
+            {
+                id: 'memoization',
+                title: '🧠 Function Memoization',
+                definition: "Memoization ek optimization technique hai jismein hum expensive (slow) function calls ke results ko cache (store) kar lete hain. Jab same inputs ke saath function dobara call hota hai, to hum calculation karne ke bajaye cached result turant return kar dete hain.",
+                examples: [
+                    {
+                        title: 'Memoizing a slow calculation',
+                        code: `<span class="code-keyword">function</span> <span class="code-function">memoize</span>(fn) {
+    <span class="code-keyword">const</span> cache = {};
+    <span class="code-keyword">return function</span>(...args) {
+        <span class="code-keyword">const</span> key = <span class="code-function">JSON</span>.<span class="code-function">stringify</span>(args);
+        <span class="code-keyword">if</span> (cache[key]) {
+            <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">'Fetching from cache...'</span>);
+            <span class="code-keyword">return</span> cache[key];
+        }
+        <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">'Calculating result...'</span>);
+        <span class="code-keyword">const</span> result = fn(...args);
+        cache[key] = result;
+        <span class="code-keyword">return</span> result;
+    };
+}
+<span class="code-keyword">const</span> slowAdd = (a, b) => a + b;
+<span class="code-keyword">const</span> fastAdd = <span class="code-function">memoize</span>(slowAdd);
+
+fastAdd(<span class="code-number">3</span>, <span class="code-number">4</span>); <span class="code-comment">// Calculating...</span>
+fastAdd(<span class="code-number">3</span>, <span class="code-number">4</span>); <span class="code-comment">// Fetching from cache...</span>`,
+                        output: 'Calculating result...\nFetching from cache...'
+                    }
+                ]
+            },
+            {
+                id: 'composition',
+                title: '🔗 Function Composition',
+                definition: "Function Composition do ya do se zyada functions ko milakar ek naya function banane ki technique hai. Ek function ka output agle function ka input banta hai (e.g. `f(g(x))`).",
+                examples: [
+                    {
+                        title: 'Composing two functions',
+                        code: `<span class="code-keyword">const</span> compose = (f, g) => (x) => f(g(x));
+
+<span class="code-keyword">const</span> toUpperCase = (str) => str.<span class="code-function">toUpperCase</span>();
+<span class="code-keyword">const</span> addExclamation = (str) => <span class="code-string">\`\${str}!\`</span>;
+
+<span class="code-keyword">const</span> shout = <span class="code-function">compose</span>(addExclamation, toUpperCase);
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-function">shout</span>(<span class="code-string">'hello'</span>));`,
+                        output: 'HELLO!'
+                    }
+                ],
+                interview: {
+                    title: '💡 Interview Corner: Composition',
+                    qas: [
+                        { question: "What is the difference between `compose` and `pipe`?", answer: "Dono hi function composition karte hain, fark sirf execution order ka hai. `compose` right-to-left execute karta hai (maths ki tarah: `f(g(x))`). `pipe` left-to-right execute karta hai, jo padhne mein zyada natural lagta hai." }
+                    ]
+                }
+            },
+
+            // PART 4: ASYNCHRONOUS JAVASCRIPT
+            {
+                id: 'event-loop',
+                title: '🔄 Event Loop & Execution Context',
+                definition: "JavaScript single-threaded hai, lekin asynchronous tasks ko handle karne ke liye Event Loop ka use karta hai. Isme 4 main parts hote hain:<br><br>1. **Call Stack:** Functions yahan execute hote hain (LIFO - Last In, First Out).<br>2. **Web APIs:** Browser dwara provide kiye gaye async functions (`setTimeout`, `fetch`). Ye yahan run hote hain.<br>3. **Callback Queue:** Jab Web API ka task complete ho jaata hai, uska callback function is queue me aa jaata hai (FIFO - First In, First Out).<br>4. **Event Loop:** Ye constant check karta hai ki Call Stack khali hai ya nahi. Agar khali hai, to ye Callback Queue se pehla function uthakar Call Stack me daal deta hai.",
+                examples: [
+                    {
+                        title: 'Event Loop in Action',
+                        code: `<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">'Start'</span>); <span class="code-comment">// 1. Call Stack me jaata hai aur execute hota hai</span>
+
+<span class="code-function">setTimeout</span>(() => {
+    <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">'Timeout'</span>); <span class="code-comment">// 4. Web API se Callback Queue me, fir Event Loop se Call Stack me</span>
+}, <span class="code-number">0</span>);
+
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">'End'</span>); <span class="code-comment">// 2. Call Stack me jaata hai aur execute hota hai</span>`,
+                        output: 'Start\nEnd\nTimeout'
+                    }
+                ]
+            },
+            {
+                id: 'settimeout-interval',
+                title: '⏰ setTimeout & setInterval',
+                definition: "`setTimeout` ek function ko ek specific delay ke baad **ek baar** run karta hai. `setInterval` ek function ko ek specific interval par **baar-baar** run karta hai.",
+                examples: [
+                    {
+                        title: 'setTimeout and clearTimeout',
+                        code: `<span class="code-keyword">const</span> timerId = <span class="code-function">setTimeout</span>(() => {
+    <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">'This will not run'</span>);
+}, <span class="code-number">2000</span>);
+<span class="code-function">clearTimeout</span>(timerId);`,
+                        output: '(Nothing is logged to the console)'
+                    },
+                    {
+                        title: 'setInterval and clearInterval',
+                        code: `<span class="code-keyword">let</span> count = <span class="code-number">0</span>;
+<span class="code-keyword">const</span> intervalId = <span class="code-function">setInterval</span>(() => {
+    count++;
+    <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">'Tick'</span>, count);
+    <span class="code-keyword">if</span> (count >= <span class="code-number">3</span>) {
+        <span class="code-function">clearInterval</span>(intervalId);
+    }
+}, <span class="code-number">500</span>);`,
+                        output: 'Tick 1\nTick 2\nTick 3'
+                    }
+                ]
+            },
+            {
+                id: 'callback',
+                title: '📞 Callback Functions',
+                definition: "Ek callback function woh function hai jise doosre function mein argument ke taur par pass kiya jaata hai, aur use baad mein (asynchronously) execute kiya jaata hai.",
+                examples: [
+                    {
+                        title: 'Asynchronous Callback (Callback Hell)',
+                        code: `<span class="code-keyword">function</span> <span class="code-function">doSomething</span>(callback) {
+    <span class="code-function">setTimeout</span>(() => {
+        <span class="code-function">callback</span>(<span class="code-string">'Step 1 done'</span>);
+        <span class="code-function">setTimeout</span>(() => {
+            <span class="code-function">callback</span>(<span class="code-string">'Step 2 done'</span>);
+            <span class="code-function">setTimeout</span>(() => {
+                <span class="code-function">callback</span>(<span class="code-string">'Step 3 done'</span>);
+            }, <span class="code-number">500</span>);
+        }, <span class="code-number">500</span>);
+    }, <span class="code-number">500</span>);
+}
+<span class="code-function">doSomething</span>(<span class="code-function">console</span>.<span class="code-function">log</span>);`,
+                        output: 'Step 1 done\nStep 2 done\nStep 3 done (with delays)'
+                    }
+                ],
+                interview: {
+                    title: '💡 Interview Corner: Callbacks',
+                    qas: [
+                        { question: "What is 'Callback Hell' and how do you solve it?", answer: "'Callback Hell' nested callbacks (pyramid of doom) ko kehte hain jisse code padhna aur maintain karna mushkil ho jaata hai. Isse **Promises** aur **`async/await`** se solve kiya jaata hai." }
+                    ]
+                }
+            },
+            {
+                id: 'promises',
+                title: '🤝 Promises',
+                definition: "Promise ek object hai jo ek asynchronous operation ke eventual completion (ya failure) ko represent karta hai. Ye Callback Hell ko solve karta hai. Iski 3 states hoti hain: **pending**, **fulfilled**, **rejected**.",
+                examples: [
+                    {
+                        title: 'Creating and Consuming a Promise',
+                        code: `<span class="code-keyword">const</span> myPromise = <span class="code-keyword">new</span> <span class="code-function">Promise</span>((resolve, reject) => {
+    <span class="code-keyword">const</span> success = <span class="code-keyword">true</span>;
+    <span class="code-function">setTimeout</span>(() => {
+        <span class="code-keyword">if</span> (success) {
+            <span class="code-function">resolve</span>(<span class="code-string">'Data fetched successfully!'</span>);
+        } <span class="code-keyword">else</span> {
+            <span class="code-function">reject</span>(<span class="code-string">'Failed to fetch data'</span>);
+        }
+    }, <span class="code-number">1000</span>);
+});
+
+myPromise
+    .<span class="code-function">then</span>(result => <span class="code-function">console</span>.<span class="code-function">log</span>(result))
+    .<span class="code-function">catch</span>(error => <span class="code-function">console</span>.<span class="code-function">error</span>(error));`,
+                        output: 'Data fetched successfully!'
+                    },
+                    {
+                        title: 'Promise.all - for parallel execution',
+                        code: `<span class="code-keyword">const</span> p1 = <span class="code-function">Promise</span>.<span class="code-function">resolve</span>(<span class="code-string">'Promise 1'</span>);
+<span class="code-keyword">const</span> p2 = <span class="code-function">Promise</span>.<span class="code-function">resolve</span>(<span class="code-string">'Promise 2'</span>);
+<span class="code-function">Promise</span>.<span class="code-function">all</span>([p1, p2]).<span class="code-function">then</span>(results => {
+    <span class="code-function">console</span>.<span class="code-function">log</span>(results);
+});`,
+                        output: "['Promise 1', 'Promise 2']"
+                    }
+                ]
+            },
+            {
+                id: 'async-await',
+                title: ' async/await',
+                definition: "`async/await` Promises ke upar bana ek 'syntactic sugar' hai, jo asynchronous code ko synchronous code jaisa likhne aur padhne me aasan banata hai.<br><br>🔹 `async` keyword function ke aage lagane se wo hamesha ek promise return karta hai.<br>🔹 `await` keyword sirf `async` function ke andar use hota hai aur promise ke settle hone tak execution ko pause kar deta hai.",
+                examples: [
+                    {
+                        title: 'Refactoring Promises with async/await',
+                        code: `<span class="code-keyword">async function</span> <span class="code-function">fetchUserData</span>() {
+    <span class="code-keyword">try</span> {
+        <span class="code-keyword">const</span> response = <span class="code-keyword">await</span> <span class="code-function">fetch</span>(<span class="code-string">'https://api.github.com/users/google'</span>);
+        <span class="code-keyword">const</span> data = <span class="code-keyword">await</span> response.<span class="code-function">json</span>();
+        <span class="code-function">console</span>.<span class="code-function">log</span>(data.name);
+    } <span class="code-keyword">catch</span> (error) {
+        <span class="code-function">console</span>.<span class="code-function">error</span>(<span class="code-string">'Error:'</span>, error);
+    }
+}
+<span class="code-function">fetchUserData</span>();`,
+                        output: 'Google'
+                    }
+                ],
+                interview: {
+                    title: '💡 Interview Corner: async/await',
+                    qas: [
+                        { question: "How do you handle errors in an `async` function?", answer: "Hamesha `try...catch` block ka use karna chahiye. `await` calls ko `try` block me rakha jaata hai, aur koi bhi rejected promise `catch` block me catch ho jaata hai." },
+                        { question: "What is the difference between `.then/.catch` and `async/await`?", answer: "`async/await` code ko zyada readable aur linear banata hai, jabki `.then` promise chaining ka use karta hai. Functionally dono same kaam karte hain, `async/await` sirf ek better syntax hai." }
+                    ]
+                }
+            },
+
+            // PART 5: OOP & 'THIS'
+            {
+                id: 'this-binding',
+                title: '🎯 `this` Binding (call, apply, bind)',
+                definition: "`this` keyword us object ko refer karta hai jo current function ko execute kar raha hai. Iski value kaise call kiya gaya hai uspar depend karti hai. Hum `call`, `apply`, aur `bind` se `this` ki value ko explicitly set kar sakte hain.",
+                examples: [
+                    {
+                        title: '.call() - Function ko turant call karta hai with specified `this` and individual arguments.',
+                        code: `<span class="code-keyword">function</span> <span class="code-function">greet</span>(greeting) {
+    <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">\`\${greeting}, \${<span class="code-keyword">this</span>.name}\`</span>);
+}
+<span class="code-keyword">const</span> person = { name: <span class="code-string">'John'</span> };
+greet.<span class="code-function">call</span>(person, <span class="code-string">'Hello'</span>);`,
+                        output: 'Hello, John'
+                    },
+                    {
+                        title: '.apply() - `call` jaisa hi hai, but arguments ko ek array me leta hai.',
+                        code: `greet.<span class="code-function">apply</span>(person, [<span class="code-string">'Hi'</span>]);`,
+                        output: 'Hi, John'
+                    },
+                    {
+                        title: '.bind() - Ek naya function return karta hai jismein `this` hamesha ke liye bound hota hai.',
+                        code: `<span class="code-keyword">const</span> greetJohn = greet.<span class="code-function">bind</span>(person);
+greetJohn(<span class="code-string">'Welcome'</span>);`,
+                        output: 'Welcome, John'
+                    }
+                ]
+            },
+            {
+                id: 'object-methods',
+                title: '🔧 Object Methods',
+                definition: "Object method ek aisi property hai jiski value ek function ho. ES6 me iske liye ek concise shorthand syntax introduce hua.",
+                examples: [
+                    {
+                        title: 'Shorthand Method Syntax',
+                        code: `<span class="code-keyword">const</span> calculator = {
+    <span class="code-comment">// Shorthand syntax</span>
+    <span class="code-function">add</span>(a, b) {
+        <span class="code-keyword">return</span> a + b;
+    },
+    <span class="code-comment">// Old syntax</span>
+    subtract: <span class="code-keyword">function</span>(a, b) {
+        <span class="code-keyword">return</span> a - b;
+    }
+};
+<span class="code-function">console</span>.<span class="code-function">log</span>(calculator.<span class="code-function">add</span>(<span class="code-number">10</span>, <span class="code-number">5</span>));`,
+                        output: '15'
+                    }
+                ]
+            },
+            {
+                id: 'constructor-functions',
+                title: '🏗️ Constructor Functions',
+                definition: "Constructor Function ek blueprint (template) ki tarah kaam karta hai jisse multiple objects create kiye ja sakte hain. Ise `new` keyword ke saath call kiya jaata hai. Conventionally, iska naam Capital letter se shuru hota hai.",
+                examples: [
+                    {
+                        title: 'Creating Objects with a Constructor',
+                        code: `<span class="code-keyword">function</span> <span class="code-function">Car</span>(make, model) {
+    <span class="code-keyword">this</span>.make = make;
+    <span class="code-keyword">this</span>.model = model;
+}
+<span class="code-keyword">const</span> car1 = <span class="code-keyword">new</span> <span class="code-function">Car</span>(<span class="code-string">'Honda'</span>, <span class="code-string">'Civic'</span>);
+<span class="code-keyword">const</span> car2 = <span class="code-keyword">new</span> <span class="code-function">Car</span>(<span class="code-string">'Toyota'</span>, <span class="code-string">'Corolla'</span>);
+<span class="code-function">console</span>.<span class="code-function">log</span>(car1.model);`,
+                        output: 'Civic'
+                    }
+                ],
+                interview: {
+                    title: '💡 Interview Corner: Constructor Functions',
+                    qas: [
+                        { question: "What does the `new` keyword do?", answer: "Ye 4 kaam karta hai: 1. Ek naya empty object banata hai. 2. `this` keyword ko us naye object se bind karta hai. 3. Naye object ka `[[Prototype]]` constructor ke `prototype` property se link karta hai. 4. Us naye object ko return karta hai (agar function kuch aur return na kare)." }
+                    ]
+                }
+            },
+            {
+                id: 'prototype',
+                title: '🔗 Prototype & Prototypal Inheritance',
+                definition: "JavaScript me har object ka ek internal link hota hai ek doosre object se, jise uska **prototype** kehte hain. Jab aap ek property ko access karte hain, aur wo object me nahi milti, to JS engine us object ke prototype me dekhta hai. Isi chain ko **prototype chain** kehte hain.",
+                examples: [
+                    {
+                        title: 'Adding methods to a prototype for efficiency',
+                        code: `<span class="code-keyword">function</span> <span class="code-function">Dog</span>(name) {
+    <span class="code-keyword">this</span>.name = name;
+}
+<span class="code-comment">// Method ko prototype par add karne se memory bachti hai</span>
+Dog.prototype.<span class="code-function">bark</span> = <span class="code-keyword">function</span>() {
+    <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">\`Woof! My name is \${<span class="code-keyword">this</span>.name}\`</span>);
+};
+<span class="code-keyword">const</span> dog1 = <span class="code-keyword">new</span> <span class="code-function">Dog</span>(<span class="code-string">'Buddy'</span>);
+dog1.<span class="code-function">bark</span>();`,
+                        output: 'Woof! My name is Buddy'
+                    }
+                ]
+            },
+            {
+                id: 'classes',
+                title: '🏛️ Classes (ES6)',
+                definition: "ES6 `class` syntax, constructor functions aur prototype-based inheritance ke upar ek 'syntactic sugar' hai. Ye OOP ko ek saaf aur familiar syntax me provide karta hai.",
+                examples: [
+                    {
+                        title: 'Defining a Class and extending it',
+                        code: `<span class="code-keyword">class</span> <span class="code-function">Animal</span> {
+    <span class="code-function">constructor</span>(name) {
+        <span class="code-keyword">this</span>.name = name;
+    }
+    <span class="code-function">speak</span>() {
+        <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">\`\${<span class="code-keyword">this</span>.name} makes a noise.\`</span>);
+    }
+}
+<span class="code-keyword">class</span> <span class="code-function">Cat</span> <span class="code-keyword">extends</span> Animal {
+    <span class="code-function">speak</span>() {
+        <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">\`\${<span class="code-keyword">this</span>.name} meows.\`</span>);
+    }
+}
+<span class="code-keyword">const</span> myCat = <span class="code-keyword">new</span> <span class="code-function">Cat</span>(<span class="code-string">'Misty'</span>);
+myCat.<span class="code-function">speak</span>();`,
+                        output: 'Misty meows.'
+                    }
+                ]
+            },
+            {
+                id: 'symbols-bigint',
+                title: '✨ Symbols & BigInt',
+                definition: "**Symbol** ek primitive data type hai jo hamesha ek unique, immutable value return karta hai. Ye object properties ke liye unique keys banane me use hota hai. **BigInt** ek numeric primitive hai jo `Number.MAX_SAFE_INTEGER` se bade integers ko represent kar sakta hai.",
+                examples: [
+                    {
+                        title: 'Symbol for unique keys',
+                        code: `<span class="code-keyword">const</span> id = <span class="code-function">Symbol</span>(<span class="code-string">'id'</span>);
+<span class="code-keyword">const</span> user = { name: <span class="code-string">'Alex'</span>, [id]: <span class="code-number">123</span> };
+<span class="code-function">console</span>.<span class="code-function">log</span>(user[id]);`,
+                        output: '123'
+                    },
+                    {
+                        title: 'BigInt for large numbers',
+                        code: `<span class="code-keyword">const</span> hugeNumber = <span class="code-number">9007199254740991n</span>;
+<span class="code-keyword">const</span> biggerNumber = hugeNumber + <span class="code-number">2n</span>;
+<span class="code-function">console</span>.<span class="code-function">log</span>(biggerNumber);`,
+                        output: '9007199254740993n'
+                    }
+                ]
+            },
+
+            // PART 6: BROWSER & DOM
+            {
+                id: 'dom',
+                title: '🛠️ DOM Manipulation',
+                definition: "DOM (Document Object Model) HTML document ka ek object-based representation hai. JavaScript is model ko use karke webpage ke content aur structure ko dynamically change kar sakta hai.",
+                examples: [
+                    {
+                        title: 'Selecting and Changing Content',
+                        code: `<span class="code-comment">&lt;p id="demo"&gt;Hello World&lt;/p&gt;</span>
+<span class="code-keyword">const</span> para = document.<span class="code-function">getElementById</span>(<span class="code-string">'demo'</span>);
+para.textContent = <span class="code-string">"Hello JavaScript!"</span>;
+para.style.color = <span class="code-string">'blue'</span>;`,
+                        output: 'Paragraph ka text change ho jaayega aur blue color ka ho jaayega.'
+                    },
+                    {
+                        title: 'Creating and Appending Elements',
+                        code: `<span class="code-comment">&lt;div id="container"&gt;&lt;/div&gt;</span>
+<span class="code-keyword">const</span> container = document.<span class="code-function">querySelector</span>(<span class="code-string">'#container'</span>);
+<span class="code-keyword">const</span> newDiv = document.<span class="code-function">createElement</span>(<span class="code-string">'div'</span>);
+newDiv.innerText = <span class="code-string">'I am a new div'</span>;
+container.<span class="code-function">appendChild</span>(newDiv);`,
+                        output: 'Page me ek naya div add ho jaayega.'
+                    }
+                ],
+                interview: {
+                    title: '💡 Interview Corner: DOM',
+                    qas: [
+                        { question: "Difference between `innerText`, `textContent`, and `innerHTML`?", answer: "`innerHTML` element ke andar ka poora HTML markup get/set karta hai (security risk ho sakta hai). `textContent` saara text content get/set karta hai (including hidden elements). `innerText` sirf visible text ko consider karta hai." }
+                    ]
+                }
+            },
+            {
+                id: 'events',
+                title: '🖱️ Events & Handlers',
+                definition: "Events user actions (like clicks, key presses) ya browser actions (like page load) hote hain. Hum in events ko `addEventListener` se 'listen' kar sakte hain aur ek event handler function run kar sakte hain jab event occur ho.",
+                examples: [
+                    {
+                        title: 'A simple click event handler',
+                        code: `<span class="code-comment">&lt;button id="myBtn"&gt;Click Me&lt;/button&gt;</span>
+<span class="code-keyword">const</span> btn = document.<span class="code-function">getElementById</span>(<span class="code-string">'myBtn'</span>);
+btn.<span class="code-function">addEventListener</span>(<span class="code-string">'click'</span>, (event) => {
+    <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">'Button was clicked!'</span>);
+    <span class="code-function">console</span>.<span class="code-function">log</span>(event.target); <span class="code-comment">// Wo element jispar click hua</span>
+});`,
+                        output: 'Button click hone par console me message log hoga.'
+                    }
+                ]
+            },
+            {
+                id: 'event-propagation',
+                title: '🌊 Event Propagation (Bubbling & Capturing)',
+                definition: "Event propagation wo process hai jisme event DOM tree me travel karta hai. Iske 2 phases hote hain:<br>1. **Capturing Phase:** Event root se target element tak neeche aata hai.<br>2. **Bubbling Phase:** Event target se root element tak upar jaata hai. <br>By default, `addEventListener` bubbling phase me event ko handle karta hai.",
+                examples: [
+                    {
+                        title: 'Stopping Propagation',
+                        code: `<span class="code-comment">// HTML: &lt;div id="parent"&gt;&lt;button id="child"&gt;Click&lt;/button&gt;&lt;/div&gt;</span>
+parent.<span class="code-function">addEventListener</span>(<span class="code-string">'click'</span>, () => <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">'Parent clicked'</span>));
+child.<span class="code-function">addEventListener</span>(<span class="code-string">'click'</span>, (event) => {
+    event.<span class="code-function">stopPropagation</span>(); <span class="code-comment">// Event ko bubble up hone se rokta hai</span>
+    <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">'Child clicked'</span>);
+});`,
+                        output: 'Button click karne par sirf "Child clicked" log hoga, "Parent clicked" nahi.'
+                    }
+                ]
+            },
+            {
+                id: 'storage',
+                title: '💾 Local & Session Storage',
+                definition: "Web Storage API browser me client-side data store karne ke 2 mechanism provide karta hai:<br>🔹 **localStorage:** Data ko permanent store karta hai (jab tak manually clear na kiya jaye).<br>🔹 **sessionStorage:** Data ko sirf current session (jab tak tab open hai) ke liye store karta hai.",
+                examples: [
+                    {
+                        title: 'Using Local Storage',
+                        code: `<span class="code-comment">// Set item</span>
+localStorage.<span class="code-function">setItem</span>(<span class="code-string">'theme'</span>, <span class="code-string">'dark'</span>);
+<span class="code-comment">// Get item</span>
+<span class="code-keyword">const</span> currentTheme = localStorage.<span class="code-function">getItem</span>(<span class="code-string">'theme'</span>);
+<span class="code-function">console</span>.<span class="code-function">log</span>(currentTheme);`,
+                        output: 'dark'
+                    }
+                ],
+                interview: {
+                    title: '💡 Interview Corner: Storage',
+                    qas: [
+                        { question: "What is the main difference between Local Storage and Cookies?", answer: "Cookies ka data har HTTP request ke saath server ko send hota hai, jabki Local Storage ka data purely client-side rehta hai. Cookies ka size (~4KB) bhi Local Storage (~5MB) se bohot kam hota hai." }
+                    ]
+                }
+            },
+
+            // PART 7: ADVANCED CONCEPTS
+            {
+                id: 'modules',
+                title: '📦 Modules (import/export)',
+                definition: "ES6 Modules code ko separate files me organize karne ka standard tareeka hai. Isse code reusable, maintainable, aur private (by default) banta hai.<br>🔹 `export`: Ek file se variables, functions, ya classes ko doosri files ke liye available banata hai.<br>🔹 `import`: Export ki hui functionality ko doosri file me use karne ke liye import karta hai.",
+                examples: [
+                    {
+                        title: 'math.js (exporting)',
+                        code: `<span class="code-comment">// math.js</span>
+<span class="code-keyword">export const</span> PI = <span class="code-number">3.14</span>;
+<span class="code-keyword">export function</span> <span class="code-function">add</span>(a, b) { <span class="code-keyword">return</span> a + b; }`,
+                        output: 'No output, this file exports functionality.'
+                    },
+                    {
+                        title: 'main.js (importing)',
+                        code: `<span class="code-comment">// main.js</span>
+<span class="code-keyword">import</span> { PI, add } <span class="code-keyword">from</span> <span class="code-string">'./math.js'</span>;
+<span class="code-function">console</span>.<span class="code-function">log</span>(add(PI, <span class="code-number">2</span>));
+<span class="code-comment">// Note: HTML me &lt;script type="module" src="main.js"&gt;&lt;/script&gt; use karna padega.</span>`,
+                        output: '5.14'
+                    }
+                ]
+            },
+            {
+                id: 'generator',
+                title: '⏯️ Generator Functions',
+                definition: "Generator Function (`function*`) ek special type ka function hai jiska execution pause aur resume kiya ja sakta hai. Ye `yield` keyword ka use karke values ki ek sequence generate karta hai. Ye ek `iterator` object return karta hai.",
+                examples: [
+                    {
+                        title: 'Basic Generator for a Sequence',
+                        code: `<span class="code-keyword">function</span>* <span class="code-function">numberGenerator</span>() {
+    <span class="code-keyword">yield</span> <span class="code-number">1</span>;
+    <span class="code-keyword">yield</span> <span class="code-number">2</span>;
+    <span class="code-keyword">yield</span> <span class="code-number">3</span>;
+}
+<span class="code-keyword">const</span> gen = <span class="code-function">numberGenerator</span>();
+<span class="code-function">console</span>.<span class="code-function">log</span>(gen.<span class="code-function">next</span>().value); <span class="code-comment">// 1</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(gen.<span class="code-function">next</span>().value); <span class="code-comment">// 2</span>`,
+                        output: '1\n2'
+                    }
+                ]
+            },
+            {
+                id: 'iterators',
+                title: '🔄 Iterators & Iterables',
+                definition: "**Iterable** ek aisa object hai jo iteration ke liye apna behavior define karta hai (e.g., `for...of` loop me). Arrays, Strings, Maps, Sets sab iterables hain.<br>**Iterator** ek object hai jo `next()` method return karta hai. `next()` ek object `{ value, done }` return karta hai.",
+                examples: [
+                    {
+                        title: 'Using the iterator of a string',
+                        code: `<span class="code-keyword">const</span> str = <span class="code-string">'Hi'</span>;
+<span class="code-keyword">const</span> iterator = str[<span class="code-function">Symbol</span>.iterator]();
+
+<span class="code-function">console</span>.<span class="code-function">log</span>(iterator.<span class="code-function">next</span>()); <span class="code-comment">// { value: 'H', done: false }</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(iterator.<span class="code-function">next</span>()); <span class="code-comment">// { value: 'i', done: false }</span>
+<span class="code-function">console</span>.<span class="code-function">log</span>(iterator.<span class="code-function">next</span>()); <span class="code-comment">// { value: undefined, done: true }</span>`,
+                        output: 'Outputs are shown in comments.'
+                    }
+                ]
+            },
+            {
+                id: 'set-map',
+                title: '🗺️ Set, Map, WeakSet, WeakMap',
+                definition: "Ye special data structures hain.<br>🔹 **Set:** Sirf unique values ka collection. Duplicates automatically remove ho jaate hain.<br>🔹 **Map:** Key-value pairs ka collection, jahan key koi bhi data type ho sakti hai.<br>🔹 **WeakSet/WeakMap:** Inke versions jo objects ko 'weakly' hold karte hain, allowing for better garbage collection.",
+                examples: [
+                    {
+                        title: 'Set - for unique values',
+                        code: `<span class="code-keyword">const</span> mySet = <span class="code-keyword">new</span> <span class="code-function">Set</span>([<span class="code-number">1</span>, <span class="code-number">2</span>, <span class="code-number">2</span>, <span class="code-number">3</span>]);
+mySet.<span class="code-function">add</span>(<span class="code-number">4</span>);
+<span class="code-function">console</span>.<span class="code-function">log</span>(mySet);`,
+                        output: 'Set(4) {1, 2, 3, 4}'
+                    },
+                    {
+                        title: 'Map - for any key type',
+                        code: `<span class="code-keyword">const</span> myMap = <span class="code-keyword">new</span> <span class="code-function">Map</span>();
+<span class="code-keyword">const</span> keyObject = {};
+myMap.<span class="code-function">set</span>(keyObject, <span class="code-string">'value for an object key'</span>);
+<span class="code-function">console</span>.<span class="code-function">log</span>(myMap.<span class="code-function">get</span>(keyObject));`,
+                        output: 'value for an object key'
+                    }
+                ]
+            },
+            {
+                id: 'rest-spread',
+                title: '... Rest & Spread Operators',
+                definition: "Same `...` syntax do alag kaam karta hai context ke basis par:<br>🔹 **Rest Parameter:** Multiple function arguments ko ek single array me **collect** karta hai.<br>🔹 **Spread Syntax:** Ek iterable (like array) ko individual elements me **expand** karta hai.",
+                examples: [
+                    {
+                        title: 'Rest Parameter (in functions)',
+                        code: `<span class="code-keyword">function</span> <span class="code-function">sum</span>(...numbers) {
+    <span class="code-keyword">return</span> numbers.<span class="code-function">reduce</span>((acc, num) => acc + num, <span class="code-number">0</span>);
+}
+<span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-function">sum</span>(<span class="code-number">1</span>, <span class="code-number">2</span>, <span class="code-number">3</span>, <span class="code-number">4</span>));`,
+                        output: '10'
+                    },
+                    {
+                        title: 'Spread Syntax (for arrays and objects)',
+                        code: `<span class="code-keyword">const</span> arr1 = [<span class="code-number">1</span>, <span class="code-number">2</span>];
+<span class="code-keyword">const</span> arr2 = [...arr1, <span class="code-number">3</span>, <span class="code-number">4</span>]; <span class="code-comment">// [1, 2, 3, 4]</span>
+<span class="code-keyword">const</span> obj1 = { a: <span class="code-number">1</span> };
+<span class="code-keyword">const</span> obj2 = { ...obj1, b: <span class="code-number">2</span> }; <span class="code-comment">// { a: 1, b: 2 }</span>`,
+                        output: 'Creates new arrays/objects by expanding existing ones.'
+                    }
+                ]
+            },
+            {
+                id: 'default-params',
+                title: '🏷️ Default Parameters',
+                definition: "ES6 me introduce hue, default parameters aapko function parameters ke liye default values set karne dete hain. Agar function call karte waqt koi value ya `undefined` pass kiya jaata hai, to default value use hoti hai.",
+                examples: [
+                    {
+                        title: 'Using Default Parameters',
+                        code: `<span class="code-keyword">function</span> <span class="code-function">greet</span>(name = <span class="code-string">'Guest'</span>) {
+    <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">\`Hello, \${name}!\`</span>);
+}
+greet(<span class="code-string">'Alice'</span>); <span class="code-comment">// Hello, Alice!</span>
+greet();       <span class="code-comment">// Hello, Guest!</span>`,
+                        output: 'Hello, Alice!\nHello, Guest!'
+                    }
+                ]
+            },
+            {
+                id: 'destructuring',
+                title: '🧩 Destructuring',
+                definition: "Destructuring ek aasan tarika hai jisse aap arrays ya objects se values nikaal kar alag-alag variables mein daal sakte hain.",
+                examples: [
+                    {
+                        title: 'Object Destructuring',
+                        code: `<span class="code-keyword">const</span> person = { name: <span class="code-string">'John'</span>, age: <span class="code-number">30</span> };
+<span class="code-keyword">const</span> { name, age } = person;
+<span class="code-function">console</span>.<span class="code-function">log</span>(name); <span class="code-comment">// John</span>`,
+                        output: 'John'
+                    },
+                    {
+                        title: 'Array Destructuring',
+                        code: `<span class="code-keyword">const</span> fruits = [<span class="code-string">'Apple'</span>, <span class="code-string">'Banana'</span>, <span class="code-string">'Cherry'</span>];
+<span class="code-keyword">const</span> [first, , third] = fruits;
+<span class="code-function">console</span>.<span class="code-function">log</span>(third); <span class="code-comment">// Cherry</span>`,
+                        output: 'Cherry'
+                    }
+                ]
+            },
+            {
+                id: 'performance',
+                title: '⏱️ Debounce & Throttle',
+                definition: "Debounce aur Throttle aisi techniques hain jo high-frequency events (jaise window resize, scroll) mein function execution ko control karke performance behtar karti hain.<br><br>🔹 **Debounce:** Events ke series ke baad, jab kuch der shaanti ho, tab function ko **ek baar** call karta hai (e.g., search bar).<br>🔹 **Throttle:** Events ke series ke dauran, function ko ek fixed time interval par **at most ek baar** call karta hai (e.g., scroll animation).",
+                examples: [
+                    {
+                        title: 'Debounce Implementation',
+                        code: `<span class="code-keyword">const</span> debounce = (func, delay) => {
+    <span class="code-keyword">let</span> timeoutId;
+    <span class="code-keyword">return function</span>(...args) {
+        <span class="code-function">clearTimeout</span>(timeoutId);
+        timeoutId = <span class="code-function">setTimeout</span>(() => <span class="code-function">func</span>(...args), delay);
+    };
+};`,
+                        output: 'This is a higher-order function to create debounced functions.'
+                    }
+                ]
+            },
+            {
+                id: 'error-handling',
+                title: '🛡️ Error Handling (try...catch)',
+                definition: "`try...catch...finally` statement synchronous aur asynchronous code me runtime errors ko handle karne ka tareeka hai.<br>🔹 **try:** Code jisme error aa sakta hai, wo yahan likha jaata hai.<br>🔹 **catch:** Agar `try` block me error aata hai, to `catch` block execute hota hai.<br>🔹 **finally:** Ye block hamesha execute hota hai, chahe error aaye ya na aaye.",
+                examples: [
+                    {
+                        title: 'Basic try...catch',
+                        code: `<span class="code-keyword">try</span> {
+    <span class="code-keyword">let</span> result = nonExistentFunction();
+} <span class="code-keyword">catch</span> (error) {
+    <span class="code-function">console</span>.<span class="code-function">error</span>(<span class="code-string">"An error occurred:"</span>, error.message);
+} <span class="code-keyword">finally</span> {
+    <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">"Execution finished."</span>);
+}`,
+                        output: 'An error occurred: nonExistentFunction is not defined\nExecution finished.'
+                    }
+                ]
+            },
+            {
+                id: 'memory-management',
+                title: '🧠 Memory Management & Garbage Collection',
+                definition: "JavaScript me memory management automatically hota hai. Engine memory allocate karta hai jab objects create hote hain aur 'Garbage Collector' (GC) use free karta hai jab objects accessible nahi rehte.<br><br>**Memory Leak** tab hota hai jab code me unused objects reh jaate hain jinhe GC remove nahi kar paata, jaise:<br>🔹 Uncleared intervals/timeouts.<br>🔹 Closures jo unnecessary variables ko hold kiye hue hain.<br>🔹 DOM elements jo code me referenced hain lekin DOM se remove ho chuke hain.",
+                examples: [
+                    {
+                        title: 'Example of a potential memory leak',
+                        code: `<span class="code-keyword">function</span> <span class="code-function">startTimer</span>() {
+    <span class="code-comment">// This interval will run forever if not cleared,</span>
+    <span class="code-comment">// potentially leaking memory.</span>
+    <span class="code-function">setInterval</span>(() => {
+        <span class="code-function">console</span>.<span class="code-function">log</span>(<span class="code-string">'tick'</span>);
+    }, <span class="code-number">1000</span>);
+}
+<span class="code-comment">// To prevent leak, we must store the ID and clear it when needed.</span>`,
+                        output: 'This code will continuously log "tick" and might lead to a memory leak if not managed.'
+                    }
+                ]
+            }
+        ];
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const contentContainer = document.getElementById('content-sections');
+            
+            sectionsData.forEach(section => {
+                const sectionEl = document.createElement('section');
+                sectionEl.id = section.id;
+                sectionEl.className = 'pt-20 -mt-20'; // For scrollspy offset
+
+                // Examples HTML
+                let examplesHtml = section.examples ? section.examples.map(ex => `
+                    <div class="mt-6">
+                        <h4 class="font-semibold text-slate-700">${ex.title}</h4>
+                        <pre class="bg-slate-800 text-white rounded-lg p-4 text-sm mt-2"><code class="language-js">${ex.code}</code></pre>
+                        <div class="code-output"><span class="font-semibold">Output:</span> <pre class="inline-block whitespace-pre-wrap">${ex.output}</pre></div>
+                    </div>
+                `).join('') : '';
+                
+                // Coding Challenges HTML
+                let codingChallengesHtml = '';
+                if (section.interview && section.interview.coding) {
+                    codingChallengesHtml = `
+                        <h4 class="text-lg font-bold text-indigo-800 mt-6 mb-2">Coding Interview Challenges</h4>
+                        ${section.interview.coding.map(challenge => `
+                            <div class="mt-4">
+                                <p class="font-semibold text-indigo-700">${challenge.question}</p>
+                                <div class="mt-2">
+                                    <pre class="bg-slate-800 text-white rounded-lg p-4 text-sm"><code class="language-js">${challenge.solution || challenge.code}</code></pre>
+                                    <div class="code-output"><span class="font-semibold">Answer:</span> <pre class="inline-block whitespace-pre-wrap">${challenge.answer || challenge.output}</pre></div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    `;
+                }
+
+                // Interview QnA HTML
+                let interviewHtml = '';
+                if (section.interview && section.interview.qas) {
+                    interviewHtml = `
+                        <div class="mt-8 bg-indigo-50 border border-indigo-200 rounded-lg p-6">
+                            <h3 class="text-xl font-bold text-indigo-800">${section.interview.title || '💡 Interview Corner'}</h3>
+                            ${section.interview.qas.map(qa => `
+                                <div class="mt-4">
+                                    <p class="font-semibold text-indigo-700">Q: ${qa.question}</p>
+                                    <p class="mt-1 text-slate-800">${qa.answer}</p>
+                                </div>
+                            `).join('')}
+                            ${codingChallengesHtml}
+                        </div>
+                    `;
+                }
+
+                // Common Mistakes HTML
+                let mistakesHtml = '';
+                if (section.commonMistakes) {
+                    mistakesHtml = `
+                        <div class="mt-8 bg-red-50 border border-red-200 rounded-lg p-6">
+                            <h3 class="text-xl font-bold text-red-700">⚠️ Common Mistakes to Avoid</h3>
+                             <ul class="list-disc list-inside mt-2 space-y-2 text-red-900">
+                                ${section.commonMistakes.map(mistake => `<li>${mistake}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Final HTML assembly
+                sectionEl.innerHTML = `
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800 border-b-4 border-blue-500 pb-2">${section.title}</h2>
+                    <p class="mt-4 text-lg text-slate-600 leading-relaxed">${section.definition}</p>
+                    ${examplesHtml}
+                    ${interviewHtml}
+                    ${mistakesHtml}
+                `;
+
+                contentContainer.appendChild(sectionEl);
+            });
+
+            // Active nav highlighting (Scrollspy)
+            const navLinks = document.querySelectorAll('#sidebar-nav a');
+            const sections = document.querySelectorAll('#content-sections section');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active-nav');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active-nav');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: "-40% 0px -60% 0px" });
+
+            sections.forEach(section => observer.observe(section));
+        });
+   
+   </script>
+</body>
+</html>
